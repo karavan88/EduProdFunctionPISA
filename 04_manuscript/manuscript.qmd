@@ -7,6 +7,25 @@ author:
 date: 09/17/2024
 date-format: long
 format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-title: "Contents"
+    toc-depth: 3
+    number-sections: true
+    highlight-style: github
+    theme: 
+      - cosmo
+      - custom.scss
+    css: styles.css
+    embed-resources: true
+    standalone: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 6
+    fig-dpi: 300
+    smooth-scroll: true
   docx:
     number-sections: true
     highlight-style: github
@@ -19,6 +38,8 @@ format:
     number-sections: true
     colorlinks: true
     colorurl: true
+    toc: true
+    toc-depth: 3
 editor: visual
 bibliography: references.bib
 biblio-style: bwl-FU

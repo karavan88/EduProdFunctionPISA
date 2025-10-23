@@ -1,0 +1,1987 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[top=30mm,left=30mm,right=30mm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Estimating Cognitive Skill Formation in Brazil, China, and Russia: An Education Production Function Approach},
+  pdfauthor={Garen Avanesian},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Estimating Cognitive Skill Formation in Brazil, China, and
+Russia: An Education Production Function Approach}
+\author{Garen Avanesian}
+\date{September 17, 2024}
+
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\textbf{Abstract}
+
+This study examines cognitive skill formation in secondary education
+across Brazil, Russia, and selected Chinese administrative units using
+PISA 2018 data. It applies a value-added estimation strategy, using
+grade progression as a proxy for annual learning gains and controlling
+for age--grade effects through random intercepts. A mixed-effects
+framework decomposes variation at the individual and school levels by
+country/territory. Results show substantial cross-country heterogeneity
+in the learning gains, which show little relation to the overall volume
+of learning per territory. Between-school variance ranges from 15\% to
+over 50\% depending on the territory, reflecting systemic differences in
+the role of schools in shaping cognitive skills. Among individual
+characteristics, SES exerts the largest effect, while gender and
+language minority effects are smaller yet substantial. Peer effects
+approximated by the socio-economic composition of students at school are
+as strong as one year of schooling at lowest, underscoring the role of
+external environment in shaping cognitive skills. Task mastery also
+strongly predicts achievement, consistent with the ``skills beget
+skills'' framework, when non-cognitive skills accelerate cognitive ones.
+The study concludes by acknowledging that institutional structure of
+education systems and peer composition of schools jointly drive
+educational inequality.
+
+\textbf{Keywords:} cognitive skills, education production function,
+human capital, non-cognitive skills, socio-economic status,
+mixed-effects models
+
+\textbf{JEL Codes:} I24, J24, C51
+
+\newpage
+
+\section{Introduction}\label{introduction}
+
+The acquisition of skills and knowledge through formal education is a
+multifaceted phenomenon that has garnered attention from various
+academic disciplines, each offering unique perspectives on the issue.
+For instance, psychology delves into the individual aspects of learning,
+such as cognitive processes and motivation. Sociology, on the other
+hand, investigates the institutional determinants and the influence of
+social environments on educational outcomes. Economics, in turn,
+typically evaluates the efficiency of the education system, positing
+that a system is more effective when it equips students with skills and
+knowledge needed to compete in the labor market and succeed in life in a
+sustainable way.
+
+Historically, the quality of education was not a primary focus of
+economic analysis. Instead, the human capital of individuals was
+evaluated based on the years of formal education or the possession of
+certified qualifications. This approach is exemplified by the Mincerian
+wage equation, which models the returns to education by considering
+educational attainment as the main variable (Mincer, 1958). However,
+this model implicitly assumes that individuals with equivalent levels of
+schooling or similar diplomas possess identical skills and knowledge,
+thereby overlooking individual differences in personality and abilities.
+As noted, attainment as an outcome of the education process ``assumes a
+year of schooling produces the same amount of student achievement, or
+skills, over time and in every country'' and ``simply counts the time
+spent in schools without judging what happens in schools'' (Hanushek,
+2020). Needless to say, people who graduate from the same schools and
+spend the same number of years in formal education are quite
+heterogeneous in terms of abilities and, as a consequence, labor
+productivity.
+
+Recognizing this limitation led to a significant shift in economic
+research. Instead of just measuring how much education in terms of years
+people have, economists focused on the quality of learning and skills,
+starting from the very early years in formal education. Accordingly, the
+recent global development agenda in education, encapsulated by
+Sustainable Development Goal 4 (SDG4), includes among its targets the
+measurement of the proportion of children achieving minimum proficiency
+levels in reading and mathematics at key stages: early grades (2 and 3),
+the end of primary, and lower secondary education (targets 4.1.1a,
+4.1.1b, and 4.1.1c respectively). This perspective underscores that
+skills and knowledge are not merely byproducts of the educational
+process but are crucial indicators of its quality. The effectiveness of
+an education system, therefore, hinges on its capacity to foster these
+outcomes and in a broader sense facilitate sustainable economic
+development (Altinok \& Aydemir, 2017; Hanushek \& Woessmann, 2007,
+2008, 2015; Vittadini et al., 2022).
+
+Educational outcomes are shaped by a myriad of inputs, both endogenous
+(such as school infrastructure, curricula, and teacher qualifications)
+and exogenous (including parental education and occupation, household
+characteristics, and individual personality traits). While policy impact
+on exogenous factors is either very limited or impossible, endogenous
+factors that constitute the institutional environment of skill
+acquisition can be directly or indirectly influenced by policymakers,
+highlighting the role of strategic educational policy in enhancing the
+quality of learning (Hanushek, 2020). To estimate how inputs of the
+education process relate to the outcome, namely, cognitive skills,
+economists conventionally use education production functions (Bowles \&
+Levin, 1968; Brown \& Saks, 1975; Hanushek, 1979, 1987, 2020; Monk,
+1989). As noted, ``{[}s{]}tudies of educational production functions
+examine the relationship among the different inputs into the educational
+process and outcomes of the process'' by typically employing
+``statistical techniques, quite commonly some form of regression
+analysis, to separate the effects of different inputs and to estimate
+the magnitude or significance of any relationships'' (Hanushek, 1987).
+In other words, regression models are used to predict the effect of
+exogenous and endogenous factors on cognitive skills.
+
+In the education production framework, learning is the output of the
+education process, i.e., what is being produced. It is approximated by
+the achievement scores derived from learning assessments. The emergence
+of such large-scale learning assessments as Programme for International
+Student Assessment (PISA) carried out by Organisation for Economic
+Co-operation and Development (OECD), or Trends in International
+Mathematics and Science Study (TIMSS) and Progress in International
+Reading Literacy Study (PIRLS) carried out by International Association
+for the Evaluation of Educational Achievement (IEA) produced a wealth of
+internationally comparable data on learning and factors associated with
+it, also serving as a source to monitor the targets of SDG4.1.1.
+Normally, test scores from these assessments are used as the outputs in
+estimating education production function. However, early works on
+education production functions were substantially challenged by
+extensive discussions with respect to the inputs of the model, as
+economists emphasized the lack of theory of learning to guide the
+mathematical specification of the function (Bowles, 1970; Hanushek,
+1979; McClung, 1977; Simmons \& Alexander, 1978). In order to estimate
+education production function and isolate the effects of other factors,
+Bowles (1970) proposed the following specification of the environmental
+influences on learning: (1) home, (2) community, (3) peer groups, and
+(4) school. As a part of three factors that constitute non-school
+environment, Bowles emphasized the role of achievement motivation as a
+largely exogenous factor of learning.
+
+Home environment refers to parental education, parental occupation,
+household income, cultural goods or books, material possessions, and all
+the other factors that shape a standard of living and define a
+socio-economic status (SES) of a child's family. They previously were
+defined as exogenous factors of education production. In a broad sense,
+peer and community effects ``can best be described as externalities in
+the production of cognitive skills or human capital'' (Dannemann, 2019,
+p. 6). They ``encompass nearly any externality in which peers'
+backgrounds, current behavior, or outcomes affect an outcome''
+(Sacerdote, 2011, p. 250). These peer effects normally refer to the
+aggregated values of achievement at the class or school level, aiming to
+estimate how the peers' outcome affects the individual outcome. However,
+peer backgrounds' characteristics, such as an aggregated value of SES,
+also can be used. Accounting for the peer effects in the education
+production functions is necessary in the light of policy decisions: the
+existing evidence suggests that the magnitude and character of peer
+effects in education could inform the distribution of students by
+schools and have critical implications on tuition fees and resource
+allocation (Epple et al., 2000; Epple et al., 2004; Epple \& Romano,
+2000; Epple \& Romano, 1998).
+
+However, particular consideration in that regard should be given to the
+school environment as schools, being the place where a child learns, in
+this context serve as ``factories'' of educational production. In this
+context, Bowles (1970) outlined 4 core dimensions of the school
+environment: (1) qualification of teachers (teacher quality), (2) number
+of available teaching staff (teacher quantity), (3) school policy, and
+(4) infrastructure (physical facilities).
+
+In the realm of educational economics, two primary estimation approaches
+of education production are distinguished: value-added and level
+estimation (Hanushek, 1987). Level estimation is applied when academic
+achievement is measured at a single time point, with the econometric
+model designed to discern the overall average impacts of educational
+inputs on outcomes. In other words, in the terminology of Bowles (1970),
+in this case ``an achievement score must be considered a measure of
+gross output'' (p.~26) of the learning production. Conversely, the
+value-added approach is utilized when assessing the relationship between
+educational inputs and student achievement across two time points. This
+method emphasizes the educational progress occurring between these
+intervals, thereby allowing for an analysis of the incremental learning
+attributable to specific educational inputs. Essentially, value-added
+models quantify the learning gains acquired within a defined timeframe,
+such as the academic knowledge an average student gains over a school
+year, while adjusting for their baseline achievement (i.e., innate
+ability). In other words, it treats the achievement score as a net
+output of the education process (Bowles, 1970). In contrast, level
+estimation predicts the average influence of educational inputs on
+cognitive achievement without accounting for individual learning
+progression over time, treating innate ability as part of the error term
+in the model. Therefore, education production functions that employ
+value-added models are particularly adept at evaluating the efficiency
+of national education systems. They facilitate the identification of
+inputs that significantly enhance learning gains over time. Notably,
+when such analyses reveal significant effects on productivity linked to
+endogenous factors, particularly those at the school level, they can
+lead to substantive policy recommendations (Khan \& Kiefer, 2007).
+
+Despite being used as a means to guide education policy and increase of
+school productivity, education production function has a number of
+limitations. As such, the presence of endogeneity resulting from omitted
+variables could substantially affect estimation of learning gains. As
+was noted, in this case endogeneity arises ``from correlations between
+included student characteristics and omitted school variables'', which
+``are mainly the result of stratification'' (Hanchane \& Mostafa, 2012)
+and inequality present in the society. In other words, economically
+disadvantaged families are more likely to reside in the relatively poor
+neighborhoods, and schools in these communities predominantly consist of
+schoolchildren with the similar - disadvantaged - background. In turn,
+some characteristics of the schools (e.g., funding, human resources,
+infrastructure) may be related to the location of the school. In that
+regard, school characteristics could be strongly associated with the
+social status of its students. These considerations present substantial
+constraints for interpreting the results of education production
+functions in the causal manner. Furthermore, complex relationships
+between different school inputs could be a subject of multicollinearity.
+A more detailed description of the econometric shortcomings of education
+production function was provided in Goldhaber \& Brewer (1997). However,
+``'{[}w{]}hile the critics raise powerful arguments, policy makers
+nonetheless need advice on effective ways of allocating resources'' and
+therefore ``abandonment of the production function method may be too
+extreme a response to its limitation'' (Khan \& Kiefer, 2007).
+
+This study contributes to the pursuit of Sustainable Development Goal
+4.1.1c, which aims to ensure that all students acquire the knowledge and
+skills needed to promote sustainable development. It employs the
+education production function framework to explore learning gains and
+the comparative effectiveness of the education systems in Brazil,
+Chinese administrative units, and Russia, countries marked by
+significant economic inequality. Utilizing data from the 2018 PISA, this
+analysis aims to dissect educational outcomes within these economies. As
+no nationally representative sample for China is available, this
+analysis covers only the cities of Beijing, Shanghai, Jiangsu, and
+Zhejiang (B-S-J-Z) in mainland China, as well as special administrative
+regions of Hong Kong and Macao.
+
+Despite similar levels of economic development (in 2018, all three
+countries were classified as upper-middle income ones based on their GNI
+per capita), these countries exhibit pronounced disparities in
+educational performance. The PISA report highlights the heterogeneity in
+their educational productivity: Chinese cities remarkably outperform the
+average of the OECD member states, Russia hovers just below this average
+(though Moscow City is reported to stand quite above the national and
+the OECD averages), and Brazil lags significantly behind (OECD, 2019b).
+These variations offer fertile ground for investigating the principal
+factors that contribute to learning gains among secondary school
+students within a similar economic tier.
+
+A primary research question guiding this inquiry is: What are the
+principal factors contributing to learning gains among secondary school
+students in Brazil, Chinese administrative units, and Russia?
+Understanding the extent to which school-level factors contribute to the
+variation in student performance is critical, bearing in mind the
+practical implications for educational policy. This understanding allows
+for assessing the sensitivity of learning outputs to institutional
+interventions at the school level. Furthermore, previous research has
+highlighted heterogeneity in school productivity with respect to
+students' socio-economic characteristics (Gyimah-Brempong \& Gyapong,
+1991; Hanushek, 1979). Acknowledging the high levels of economic
+inequality in Brazil, China, and Russia prompts a critical secondary
+research question incorporating an equity perspective into the education
+production: Are learning gains heterogeneous with respect to students'
+socio-economic status, as well as socio-economic composition of students
+in school? This question arises from the premise that even the recent
+results of internationally comparative large scale learning assessments
+underscore that economic inequality strongly relates to educational
+outcomes, resulting in significant achievement gaps (OECD, 2019b). With
+that respect, it is essential to examine if and how students'
+socio-economic backgrounds affect their learning progress in different
+educational systems. This socio-economic background operates through two
+dimensions: SES of a family to which a child belongs, and socio-economic
+composition of students in schools where a child learns. This problem
+statement lays a solid foundation for discerning the influence of
+national educational policies and system characteristics on scholastic
+achievement. The present comparative analysis aims to inform
+policymakers and education stakeholders about effective approaches to
+enhancing educational quality and equity in similar economic contexts.
+
+\section{Data}\label{data}
+
+This study utilizes the 2018 PISA data for Brazil, selected regions of
+China, and Russia, providing a comprehensive assessment of student
+achievement in reading, mathematics, and science, as well as information
+on student and school-level factors that affect learning. As has been
+mentioned, the Chinese data are not nationally representative, covering
+only the cities of Beijing, Shanghai, Jiangsu, and Zhejiang (B-S-J-Z) in
+mainland China. Additionally, separate assessments were conducted in the
+Chinese special administrative regions of Hong Kong and Macao. In
+contrast, Russia's data includes a nationally representative sample, as
+well as separate samples from the city of Moscow, Moscow region, and the
+Republic of Tatarstan. Brazil's sample is uniform, with no
+differentiation by territorial units. A summary of the sample is
+presented in Table~\ref{tbl-sample-summary}.
+
+\textbf{\emph{Output variable}}
+
+While PISA collects the data on functional literacy in three cognitive
+domains, namely, reading, mathematics, and science, the test scores in
+reading serve as the dependent variable in the study. There are several
+reasons behind that. First, 2018 analytical framework of PISA defines
+reading comprehension within 3 key processes, which refer to locating
+information, understanding, and evaluating and reflecting. The last one
+refers to the most high-level process as ``readers must go beyond
+understanding the literal or inferred meaning of a piece of text or a
+set of texts to assess the quality and validity of its content and
+form'' (OECD, 2019b, p. 36). It consists of such cognitive processes as
+(1) assessing quality and credibility, where a readers judges whether
+the content is accurate, unbiased, and valid; (2) reflecting on content
+and form, where a reader assesses the text on its quality and style; (3)
+corroborating and handling conflict, where a reader compares information
+in texts, identifies contradictions between them, and makes decisions on
+how to handle these contradictions. All these cognitive processes are
+also essential for skills in mathematics and science, as they are laying
+the foundation for more complex cognitive processes in these two
+domains. Another study, using PISA 2018, has found that ``reading and
+mathematics were important predictors of science achievement, and the
+effects of reading significantly exceeded mathematics'' (Zhu, 2021).
+
+It was also highlighted based on the statistical analysis of PIRLS and
+TIMMS data that achievement in all three cognitive skills is highly
+correlated (Caponera et al., 2016). Section~\ref{sec-app1} of Appendix
+tests this assumption and presents correlations between reading, math,
+and science by country. It confirms that carrying out the analysis on
+three cognitive skills separately is redundant as they are highly
+correlated. As the original PISA dataset standardizes the cognitive
+score at the OECD average and standard deviation, for the purpose of the
+analysis the dependent variable was rescaled to reflect the average and
+standard deviation of the selected sample of Brazil, Chinese cities, and
+Russia. The respective probability density plots can be found in
+Section~\ref{sec-app3} of Appendix.
+
+\textbf{\emph{Input variables}}
+
+The grade of study serves as a major predictor in the education
+production function, proxying the learning gain that occurs in one
+academic year and thus allowing for the estimation in a value-added
+manner. Student-level characteristics, such as age and sex, are included
+as socio-demographic controls. Additionally, the language spoken at home
+is used to approximate minority status, given the context of three
+states with different ethnic groups.
+
+\begin{table}
+
+\caption{\label{tbl-sample-summary}Sample Summary}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccccccc}
+\toprule
+Variable & \textbf{Brazil}  N = 10,691\textsuperscript{\textit{1}} & \textbf{BSJZ}  N = 12,058\textsuperscript{\textit{1}} & \textbf{Hong Kong}  N = 6,037\textsuperscript{\textit{1}} & \textbf{Macao (China)}  N = 3,775\textsuperscript{\textit{1}} & \textbf{Moscow}  N = 5,768\textsuperscript{\textit{1}} & \textbf{Moscow Region}  N = 2,016\textsuperscript{\textit{1}} & \textbf{Russia}  N = 7,608\textsuperscript{\textit{1}} & \textbf{Tatarstan}  N = 5,816\textsuperscript{\textit{1}} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Age} & 15.90 (0.28) & 15.77 (0.29) & 15.73 (0.29) & 15.83 (0.29) & 15.78 (0.28) & 15.80 (0.28) & 15.81 (0.29) & 15.79 (0.28) \\ 
+{\bfseries Gender} &  &  &  &  &  &  &  &  \\ 
+    Female & 5,478 (51\%) & 5,775 (48\%) & 2,955 (49\%) & 1,862 (49\%) & 2,847 (49\%) & 970 (48\%) & 3,861 (51\%) & 2,906 (50\%) \\ 
+    Male & 5,213 (49\%) & 6,283 (52\%) & 3,082 (51\%) & 1,913 (51\%) & 2,921 (51\%) & 1,046 (52\%) & 3,747 (49\%) & 2,910 (50\%) \\ 
+{\bfseries ESCS} & -0.76 (1.10) & -0.07 (0.98) & -0.22 (0.92) & -0.21 (0.82) & 0.79 (0.58) & 0.57 (0.61) & 0.41 (0.66) & 0.41 (0.64) \\ 
+{\bfseries Area} &  &  &  &  &  &  &  &  \\ 
+    1. Village/Small Town & 1,681 (17\%) & 2,735 (23\%) & 134 (3.0\%) & 5 (0.1\%) & 0 (0\%) & 388 (19\%) & 1,691 (23\%) & 1,289 (22\%) \\ 
+    2. Town & 3,506 (35\%) & 1,890 (16\%) & 775 (17\%) & 0 (0\%) & 39 (0.7\%) & 553 (27\%) & 1,753 (24\%) & 1,093 (19\%) \\ 
+    3. City/Large City & 4,870 (48\%) & 7,433 (62\%) & 3,571 (80\%) & 3,770 (100\%) & 5,729 (99\%) & 1,075 (53\%) & 3,783 (52\%) & 3,434 (59\%) \\ 
+{\bfseries Grade} &  &  &  &  &  &  &  &  \\ 
+    Grade 10 & 3,430 (32\%) & 7,601 (63\%) & 4,108 (68\%) & 2,187 (58\%) & 559 (9.7\%) & 188 (9.3\%) & 809 (11\%) & 221 (3.8\%) \\ 
+    Grade 11 & 4,608 (43\%) & 132 (1.1\%) & 51 (0.8\%) & 39 (1.0\%) & 6 (0.1\%) & 2 (<0.1\%) & 7 (<0.1\%) & 0 (0\%) \\ 
+    Grade 12 & 219 (2.0\%) & 7 (<0.1\%) & 0 (0\%) & 1 (<0.1\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\ 
+    Grade 7 & 378 (3.5\%) & 26 (0.2\%) & 56 (0.9\%) & 71 (1.9\%) & 14 (0.2\%) & 2 (<0.1\%) & 23 (0.3\%) & 4 (<0.1\%) \\ 
+    Grade 8 & 744 (7.0\%) & 190 (1.6\%) & 315 (5.2\%) & 356 (9.4\%) & 419 (7.3\%) & 124 (6.2\%) & 591 (7.8\%) & 559 (9.6\%) \\ 
+    Grade 9 & 1,312 (12\%) & 4,102 (34\%) & 1,507 (25\%) & 1,121 (30\%) & 4,770 (83\%) & 1,700 (84\%) & 6,178 (81\%) & 5,032 (87\%) \\ 
+{\bfseries Language at Home} &  &  &  &  &  &  &  &  \\ 
+    1. Language of the test & 10,322 (99\%) & 11,934 (100\%) & 4,914 (84\%) & 3,070 (81\%) & 5,270 (96\%) & 1,896 (95\%) & 6,867 (92\%) & 4,673 (82\%) \\ 
+    2. Other language & 152 (1.5\%) & 58 (0.5\%) & 959 (16\%) & 704 (19\%) & 220 (4.0\%) & 96 (4.8\%) & 585 (7.9\%) & 1,038 (18\%) \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Mean (SD); n (\%)\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+Source: Calculations by the authors based on the PISA 2018 data.
+
+Non-cognitive characteristics, such as motivation to achieve and learn,
+are also important factors influencing learning gains. Task mastery,
+operationalized through the concept of achievement motivation in PISA
+2018 (Buchholz et al., 2022; OECD, 2019c, 2019a), is a key predictor of
+academic achievement, particularly among students from economically
+disadvantaged backgrounds (Avanesian et al., 2022).
+
+The Index of economic, social, and cultural status (ESCS) aggregates
+factors like parental education, occupation, material possessions, and
+cultural goods, which constitute the milieu associated with child
+socialization. This composite measure is used to avoid multicollinearity
+and to recognize that these parameters are exogenous and cannot be
+subject to policy interventions. To achieve an equity perspective, the
+index is divided into three percentile groups: bottom 40\%, middle 50\%,
+and top 10\%.
+
+The model also accounts for the peer effects by including the average
+ESCS per school as a proxy of social environment. School-level factors,
+such as location, type, student-teacher ratio, average class size,
+teacher qualification, and poor school infrastructure, are also
+represented.
+
+All the descriptive statistics of the variables used in the study are
+presented in Section~\ref{sec-app2} of Appendix. In order to have a
+preliminary idea of how the inputs of the regression models are
+correlated between each other, correlation plots were produced and can
+be found in Section~\ref{sec-app4} of Appendix.
+
+\section{Econometric Verification
+Strategy}\label{econometric-verification-strategy}
+
+Econometric literature suggests many different ways to operationalize
+the education production function, with some variations amongst scholars
+(Bowles, 1970; Glewwe \& Kremer, 2006; Todd \& Wolpin, 2003). Adapted
+from Glewwe \& Kremer (2006), it can be written as follows:
+
+\begin{equation}\phantomsection\label{eq-eq1}{A_{igt} = f_a \left(Q^{(t)}_{ig}, C^{(t)}_{ig}, H^{(t)}_{ig}\right)  }\end{equation}
+where:\\
+- \(A_{igt}\) is the academic achievement score for student \(i\) in
+school \(g\) cumulative to the time \(t\);\\
+- \(Q_{ig}\) refers to the vector characteristics of a school \(g\) in
+which a child \(i\) studies cumulative to the time \(t\);\\
+- \(C_{ig}\) is the vector of individual characteristics of a child
+\(i\);\\
+- \(H_{ig}\) is the vector of household/family characteristics
+cumulative to the time \(t\).
+
+\textbf{\emph{Estimation approach}}
+
+As previously acknowledged, the PISA data are cross-sectional and do not
+contain longitudinal learning records for individual students. However,
+it is possible to estimate learning gains in a value-added manner by
+utilizing the variable ``grade,'' thus predicting the average learning
+that a typical student acquires in one academic year. This approach is
+well-established in the economic literature (Avvisati \& Givord, 2021a,
+2021b, 2023), where previous studies estimated learning gains by
+accounting for the complex interplay between age, grade, test timing,
+and school starting age through difference-in-difference or instrumental
+variable methods. Building on similar theoretical assumptions regarding
+the sources of endogenous variation, this study utilizes a different
+verification model, adopting a mixed-effects (multilevel) model that has
+a number of advantages.
+
+While age is an exogenous factor, it introduces endogeneity in the
+education production function due to students' differing durations in
+the education system. The PISA dataset samples 15-year-olds, introducing
+only a 12-month age variability, but the distribution of age by grade
+spans five academic years, creating substantial variability. This makes
+the relationship between age and grade a source of endogenous variation.
+Students of the same age but in different grades may have substantially
+different baseline achievements and subsequent learning gains due to
+variations in the time spent in education. These differences may result
+from either grade repetition (which is controlled for in the model) or
+variations in school entry age. Therefore, as some students might be
+either over-aged or under-aged for their grade, the model must isolate
+the effect of age on learning.
+
+Adopting the random intercept that occurs due to a student's age allows
+for individual variations in learning outcomes based on different ages.
+Without ignoring between-age variation (like it happens in conventional
+econometric estimation via fixed-effect models based on de-meaning), it
+separates within- and between-age variation in learning due to age by
+accounting for age-related differences across students. The adopted
+random intercept term captures unobserved heterogeneity associated with
+age, i.e., it models the variation in learning that cannot be explained
+solely by the fixed effects, while allowing for different baseline
+learning across age. In essence, this approach handles both observed and
+unobserved age-related variability, ensuring that the random intercept
+absorbs the unmeasured effects specific to different ages, allowing the
+fixed effect of grade to capture the systematic learning variations.
+This strategy facilitates the estimation of grade-related learning gains
+in a cross-sectional dataset, even in the absence of longitudinal
+records.
+
+However, age is not the only source of endogeneity in the model. Even
+within one territory, students are clustered within schools, and the
+distribution of students by schools is not random. In other words,
+though there are a number of school-level factors included in the model,
+they might not capture all the differences in the baseline effect of a
+school on learning. Moreover, including many school-level variables
+could lead to multicollinearity issues. A random intercept can help
+mitigate this by capturing the variance attributable to the school
+itself, which might otherwise be incorrectly attributed to the observed
+school-level variables.
+
+Further, two key assumptions outlined in the research question is that
+learning gains could be heterogeneous with respect to a socio-economic
+status of a child's family, or socio-economic composition of students in
+school. As such, we want to test the hypothesis if the learning gain
+that occurs in one academic year varies due to the differences in
+economic standing - both of individuals and schools. With that respect,
+incorporation of random slope of grade by percentile groups of ESCS
+index per individual and averaged across students per school would allow
+for addressing these research questions.
+
+The data in this study covers three countries, with China consisting of
+three different samples (BSJZ, Hong Kong, and Macao), and Russia of four
+(Russian sample and separate for Moscow, Moscow region, and Tatarstan).
+The model needs to account for differences in schooling across these
+territories, national education systems, as well as potential variations
+in subnational regulations. With that respect, as each territory
+provides a sufficient number of observations, mixed-effects models are
+estimated separately.
+
+Proceeding from that, the following mixed-effects model is calculated:
+
+\begin{equation}\phantomsection\label{eq-eq2}{
+CS_{ij} = \beta_0 + \beta_1 \cdot \text{Grade}_{ij} + \sum_{k \in C} \beta_{C_k} \cdot \text{C}_{ij,k} + \sum_{l \in H} \beta_{H_l} \cdot \text{H}_{ij,l} + \sum_{m \in Q} \beta_{Q_m} \cdot \text{Q}_{ij,m} \\
++ u_{0j} + (\beta_{\text{Grade}} + u_{1j}) \cdot \text{Grade}_{ij} + \epsilon_{ij},
+}\end{equation} where:\\
+- \(CS_{ij}\) is the cognitive skills in reading for student \(i\) in
+school \(j\).\\
+- \(\beta_0\) is the overall intercept. - \(\beta_1 \text{Grade}_{ij}\)
+is the learning gain for a student \(i\) in school \(j\).\\
+- \(\sum\limits_{k \in C} \beta_{C_k} \cdot \text{C}_{ij,k}\) represents
+the sum over individual factors \((C)\), where \(\beta_{C_k}\) are
+coefficients for individual variables \(\text{C}_{ij,k}\).\\
+- \(\sum\limits_{l \in H} \beta_{H_l} \cdot \text{H}_{ij,l}\) represents
+the sum over household factors \((H)\), where \(\beta_{H_l}\) are
+coefficients for household variables \(\text{H}_{ij,l}\).\\
+- \(\sum\limits_{m \in Q} \beta_{Q_m} \cdot \text{Q}_{ij,m}\) represents
+the sum over school-related factors \((Q)\), where \(\beta_{Q_m}\) are
+coefficients for school-related variables \(\text{Q}_{ij,m}\).\\
+- \(u_{0j}\) is the random intercept for school \(j\).\\
+- \(u_{1d}\) is the random slope for Grade by country \(d\).\\
+- \(\epsilon_{ij}\) is the error term for student \(i\) in school \(j\).
+
+In addition to the baseline model, two supplementary mixed-effects
+models are calculated, with minor modifications of the baseline model.
+The second model excludes the fixed effect of SES and average SES per
+school, and instead adopt random slope of grade by country/territory and
+SES percentile group. The third model also replicates the first one, but
+instead of random slope of grade by individual SES percentile group, it
+does the same for schools, allowing to estimate how learning gains are
+different across schools varying in the concentration of students from
+poor or wealthy families.
+
+The analysis was carried out in R (R Core Team, 2021), open-source
+software for statistical computing. The mixed-effects regression models
+were calculated using the lme4 package (Bates et al., 2015).
+Significance values for the models were produced with the help of the
+lmerTest package.
+
+\section{Results}\label{results}
+
+\subsection{Gross Educational
+Productivity}\label{gross-educational-productivity}
+
+A descriptive exploration reveals significant variation in gross
+educational productivity across countries and territories, with average
+skill levels highlighting heterogeneity within the sample.
+Table~\ref{tbl-desc-stats} presents data on average learning volumes by
+country, further disaggregated by socio-economic status percentile
+groups. The results show that the Chinese cities of Beijing, Shanghai,
+Jiangsu, and Zhejiang (BSJZ) exhibit the highest average learning
+volumes, with an average value of 0.60 standard deviations above the
+sample mean. Following at a considerable distance are Hong Kong (0.28)
+and Macao (0.26), while Moscow City records a value of 0.34. In
+contrast, Brazil reports the lowest average value (--0.80), followed by
+Tatarstan (--0.32) and the Russian Federation overall (--0.17). The
+Moscow Region also scores slightly below the sample mean (--0.11).
+
+Additionally, all countries and territories demonstrate substantial
+disparities in learning volumes based on SES. Children from the bottom
+40\% of families, in terms of SES, consistently lag behind their
+higher-SES peers, with the largest gap observed in Brazil. Notably, the
+difference between the bottom 40\% and the top 10\% is also pronounced
+in BSJZ and Hong Kong, while it is somewhat narrower in Moscow City and
+Macao. However, since these figures are influenced by multiple factors,
+the following sections of the paper explore in greater depth the
+underlying drivers behind the patterns identified in this descriptive
+analysis.
+
+\begin{table}
+
+\caption{\label{tbl-desc-stats}Gross Educational Productivity (Average
+Reading Score) per Country/Territory and SES}
+
+\centering{
+
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}crrrr}
+\toprule
+Country/Territory & Total & Bottom 40\% & Middle 50\% & Top 10\% \\ 
+\midrule\addlinespace[2.5pt]
+Brazil & -0.80 & -1.08 & -0.70 & 0.02 \\ 
+Hong Kong & 0.28 & 0.12 & 0.37 & 0.64 \\ 
+Macao & 0.26 & 0.15 & 0.30 & 0.49 \\ 
+B-S-J-Z (China) & 0.60 & 0.29 & 0.75 & 1.15 \\ 
+Moscow City (RUS) & 0.34 & 0.18 & 0.48 & 0.54 \\ 
+Moscow Region (RUS) & -0.11 & -0.30 & 0.01 & 0.08 \\ 
+Tatarstan (RUS) & -0.32 & -0.55 & -0.16 & -0.13 \\ 
+Russian Federation & -0.17 & -0.43 & 0.00 & 0.08 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+Source: Calculations by the authors based on the PISA 2018 data.\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+\subsection{Variation in Skills due to School-Level
+Factors}\label{variation-in-skills-due-to-school-level-factors}
+
+Understanding the role that schools play in shaping student learning
+outcomes is not just an econometric exercise; it is a policy imperative.
+This information is summarized in the Intraclass Correlation
+Coefficients (ICC), which represent the variance attributable to the
+random intercept terms incorporated into the model. The baseline models
+for each of the territories include only reading score as a dependent
+variable and a school identification as a random intercept term. In
+other words, these can also be called null models. By estimating the
+ICCs from the null models, we can identify how much of the variation in
+students' reading scores is attributable to differences between schools.
+In simpler terms, the ICC tells us how much it matters which school a
+child attends, as opposed to their family SES background or individual
+characteristics. The variance components of school identifiers from the
+baseline mixed-effects models by each territory are presented in
+Figure~\ref{fig-mem-base-icc}.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{manuscript_files/figure-pdf/fig-mem-base-icc-1.pdf}
+
+}
+
+\caption{\label{fig-mem-base-icc}Share of variance in reading score
+attributable to school-level factors, results of mixed-effects models
+with random intercept terms by school identifiers, separately by each
+territory}
+
+\end{figure}%
+
+The results show that schools do matter, but not equally across
+socio-economic contexts. In places like B-S-J-Z (China) and Brazil,
+school-level differences account for nearly 50\% of the variation in
+reading performance. This suggests that improving the quality of schools
+in these systems could have a major impact on learning outcomes. In
+contrast, Hong Kong, Macao, and Russia fall into a middle category, with
+school effects explaining around 30--35\% of the variance. While school
+quality is still important in these cases, it may be only one part of a
+broader picture that includes home environments, peer effects, and other
+determinants beyond formal education.
+
+Interestingly, administrative units within Russia, namely, Moscow City,
+Moscow Region, and Tatarstan, show a much smaller share of variance
+explained by schools. For instance, in the city of Moscow, only about
+14\% of the variability in reading scores is attributable to
+school-level factors. This presents a paradox: despite Moscow's high
+average PISA performance, which lies substantially above the average of
+OECD countries, the role of the school itself appears very limited. One
+possibility is that much of the learning advantage in Moscow is driven
+by factors outside the classroom, such as private tutoring or parental
+education and occupation, or any other set of factors linked to the
+socio-economic advantage. Another explanation could be that the quality
+of schooling is relatively uniform across the city, which in turn limits
+the observable differences between the schools. Either way, these
+findings complicate the assumption that high-performing systems always
+owe their success to the strength of their schools.
+
+\subsection{Heterogeneity in Net Educational Productivity: Countries
+Differ by Learning Gains}\label{sec-learn-gains}
+
+While null models allow for estimating variance attributable to schools,
+they do not outline the magnitude of specific factors behind the most
+productive education systems. For this purpose, the main model with
+covariates representing school, individual, and family factors, was
+carried out for each territory separately. The results of the
+mixed-effects models are presented in Table~\ref{tbl-reg-mem}. The
+estimated learning gains associated with progressing one school grade
+vary considerably across countries and territories, indicating stark
+differences in the net productivity of education systems as opposed to
+their gross productivity. These coefficients, interpreted as the average
+increase in standard deviation of reading performance from an additional
+year of schooling, range from as low as 0.203 in Hong Kong to as high as
+0.375 in Moscow Region.
+
+\begin{table}
+
+\caption{\label{tbl-reg-mem}Summary of Mixed-Effects Model Regressions}
+
+\centering{
+
+\centering
+\begin{talltblr}[         %% tabularray outer open
+entry=none,label=none,
+note{}={  },
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-9}{solid, black, 0.05em},
+hline{34}={1-9}{solid, black, 0.05em},
+hline{1}={1-9}{solid, black, 0.1em},
+hline{37}={1-9}{solid, black, 0.1em},
+column{2-9}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Russia & Moscow City & Moscow Region & Tatarstan & BSJZ & Hong Kong & Macao & Brazil \\
+(Intercept) & \num{-2.352} & \num{-3.200} & \num{-3.211} & \num{-2.637} & \num{-4.372} & \num{-4.020} & \num{-2.680} & \num{-3.892} \\
+& (\num{0.512}) *** & (\num{1.109}) ** & (\num{1.563}) * & (\num{0.490}) *** & (\num{0.344}) *** & (\num{0.933}) *** & (\num{0.736}) *** & (\num{0.275}) *** \\
+School year & \num{0.264} & \num{0.347} & \num{0.376} & \num{0.240} & \num{0.326} & \num{0.202} & \num{0.328} & \num{0.325} \\
+& (\num{0.027}) *** & (\num{0.036}) *** & (\num{0.054}) *** & (\num{0.033}) *** & (\num{0.018}) *** & (\num{0.028}) *** & (\num{0.017}) *** & (\num{0.013}) *** \\
+Sex: Male & \num{-0.167} & \num{-0.130} & \num{-0.248} & \num{-0.208} & \num{-0.066} & \num{-0.120} & \num{-0.033} & \num{-0.090} \\
+& (\num{0.020}) *** & (\num{0.030}) *** & (\num{0.040}) *** & (\num{0.023}) *** & (\num{0.011}) *** & (\num{0.038}) ** & (\num{0.027}) & (\num{0.018}) *** \\
+SES: Middle 50\% & \num{0.155} & \num{0.251} & \num{0.142} & \num{0.166} & \num{0.088} & \num{-0.030} & \num{0.046} & \num{0.103} \\
+& (\num{0.023}) *** & (\num{0.033}) *** & (\num{0.044}) ** & (\num{0.025}) *** & (\num{0.013}) *** & (\num{0.040}) & (\num{0.026}) + & (\num{0.021}) *** \\
+SES: Top 10\% & \num{0.203} & \num{0.190} & \num{0.194} & \num{0.099} & \num{0.195} & \num{-0.023} & \num{0.086} & \num{0.170} \\
+& (\num{0.040}) *** & (\num{0.056}) *** & (\num{0.075}) ** & (\num{0.045}) * & (\num{0.023}) *** & (\num{0.065}) & (\num{0.045}) + & (\num{0.037}) *** \\
+Language minority & \num{-0.282} & \num{-0.473} & \num{-0.424} & \num{-0.128} & \num{-0.477} & \num{-0.026} & \num{-0.613} & \num{-0.221} \\
+& (\num{0.047}) *** & (\num{0.081}) *** & (\num{0.097}) *** & (\num{0.034}) *** & (\num{0.079}) *** & (\num{0.055}) & (\num{0.046}) *** & (\num{0.083}) ** \\
+Area: Town & \num{0.186} &  & \num{-0.226} & \num{0.156} &  &  &  & \num{0.006} \\
+& (\num{0.088}) * &  & (\num{0.191}) & (\num{0.107}) &  &  &  & (\num{0.059}) \\
+Area: City/Large City & \num{0.173} &  & \num{-0.175} & \num{0.242} &  &  &  & \num{0.033} \\
+& (\num{0.082}) * &  & (\num{0.148}) & (\num{0.093}) ** &  &  &  & (\num{0.063}) \\
+Class size & \num{-0.034} & \num{-0.024} & \num{-0.043} & \num{-0.001} & \num{0.085} & \num{0.166} & \num{-0.033} & \num{0.009} \\
+& (\num{0.045}) & (\num{0.083}) & (\num{0.130}) & (\num{0.040}) & (\num{0.017}) *** & (\num{0.073}) * & (\num{0.057}) & (\num{0.014}) \\
+Class size (squared) & \num{0.001} & \num{0.001} & \num{0.001} & \num{-0.000} & \num{-0.001} & \num{-0.003} & \num{0.001} & \num{-0.000} \\
+& (\num{0.001}) & (\num{0.002}) & (\num{0.003}) & (\num{0.001}) & (\num{0.000}) *** & (\num{0.001}) * & (\num{0.001}) & (\num{0.000}) \\
+Student–teacher ratio & \num{-0.011} & \num{0.001} & \num{-0.001} & \num{-0.005} & \num{-0.003} & \num{0.035} &  & \num{-0.004} \\
+& (\num{0.004}) ** & (\num{0.004}) & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.030}) &  & (\num{0.001}) *** \\
+Teachers with Master's (\%) & \num{0.070} & \num{-0.021} & \num{-0.017} & \num{0.127} & \num{-0.267} & \num{0.048} &  & \num{0.740} \\
+& (\num{0.065}) & (\num{0.051}) & (\num{0.142}) & (\num{0.068}) + & (\num{0.181}) & (\num{0.317}) &  & (\num{0.137}) *** \\
+Poor School Infrastructure & \num{-0.099} & \num{-0.076} & \num{0.070} & \num{0.095} & \num{-0.069} & \num{0.133} & \num{0.239} & \num{0.042} \\
+& (\num{0.101}) & (\num{0.127}) & (\num{0.290}) & (\num{0.119}) & (\num{0.081}) & (\num{0.204}) & (\num{0.216}) & (\num{0.050}) \\
+Task performance & \num{0.059} & \num{0.058} & \num{0.070} & \num{0.044} & \num{0.033} & \num{0.034} & \num{0.034} & \num{0.073} \\
+& (\num{0.011}) *** & (\num{0.017}) *** & (\num{0.021}) *** & (\num{0.012}) *** & (\num{0.006}) *** & (\num{0.019}) + & (\num{0.013}) ** & (\num{0.009}) *** \\
+Average school SES & \num{0.679} & \num{0.666} & \num{0.597} & \num{0.514} & \num{0.621} & \num{0.713} & \num{0.442} & \num{0.311} \\
+& (\num{0.105}) *** & (\num{0.123}) *** & (\num{0.275}) * & (\num{0.102}) *** & (\num{0.039}) *** & (\num{0.092}) *** & (\num{0.129}) *** & (\num{0.043}) *** \\
+Private school &  &  &  &  & \num{-0.075} &  & \num{0.226} & \num{0.282} \\
+&  &  &  &  & (\num{0.062}) &  & (\num{0.224}) & (\num{0.074}) *** \\
+Num.Obs. & \num{4543} & \num{2323} & \num{1417} & \num{3751} & \num{11372} & \num{1853} & \num{3268} & \num{5515} \\
+R2 Marg. & \num{0.185} & \num{0.150} & \num{0.116} & \num{0.133} & \num{0.340} & \num{0.323} & \num{0.253} & \num{0.381} \\
+R2 Cond. & \num{0.330} &  & \num{0.263} & \num{0.284} & \num{0.531} &  & \num{0.402} & \num{0.486} \\
+\end{talltblr}
+
+}
+
+\end{table}%
+
+When it comes to net educational productivity, Moscow Region and Moscow
+City come out on top. Their schools seem to do particularly well when it
+comes to turning classroom time into measurable learning. On the flip
+side, Hong Kong, which usually scores very well overall in PISA, shows a
+much smaller gain per school year. That effect may arise either as a
+consequence of the overall high levels of reading proficiency, which
+make marginal gains smaller in magnitude. Notably divergent results
+observed in learning gains across the three Chinese territories, namely,
+BSJZ, Hong Kong, and Macao, point at potential differences in the
+education policy, curriculum, education finance, or resources at the
+subnational level between the cities of mainland China and special
+administrative regions of Hong Kong and Macao. The same argument can be
+applied to Russia, where despite federal governance and autonomous
+status of certain administrative units, education system appears to be
+rather centralized. While the country overall performs moderately,
+learning gains in Tatarstan substantially fall behind from the ones in
+Moscow region and Moscow City. Finally, Brazil shows a surprisingly high
+learning gain per school year given its lower average PISA scores. This
+could imply that while learning levels are low, the year-on-year
+improvements are relatively strong, perhaps because lower-performing
+systems have more room for growth.
+
+\subsection{Magnitude of School-Level
+Factors}\label{magnitude-of-school-level-factors}
+
+To better understand the effectiveness of education systems, it is
+essential to examine the factors associated with advanced cognitive
+skills at the country levels. The analysis in
+Section~\ref{sec-learn-gains} reveals that the average learning gains
+per academic year substantially vary across the studied countries and
+territories. These learning gains give us a meaningful and more
+intuitive way to interpret the regression coefficients of other
+variables. If to look at these regression coefficients through the lens
+of learning gains, they can be interpreted not in standard deviations,
+but in terms of equivalent years of schooling (EYOS), providing a more
+policy-oriented approach (Evans \& Yuan, 2019). In that term, a
+coefficient of school year would provide the amount of learning under
+the ``business-as-usual'' scenario. For instance, if the school year
+effect corresponds to 0.2 standard deviations and the regression
+coefficient for the share of teachers with a Master's degree accounts
+for 0.05 standard deviations, a 1\% increase in the proportion of
+qualified teachers would be equivalent to a learning gain of
+approximately one-quarter of a year of schooling. While the original
+regression coefficients are presented in Table~\ref{tbl-reg-mem},
+Figure~\ref{fig-eyos} converts these coefficients into the corresponding
+effects with relation to the school year gains.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{manuscript_files/figure-pdf/fig-eyos-1.pdf}
+
+}
+
+\caption{\label{fig-eyos}Effect of covariates in Equivalent Years of
+Schooling (EYOS), relative to the learning gain from one school year,
+results of the mixed-effects models}
+
+\end{figure}%
+
+The effect of school location is quite pronounced in Russia overall and
+in its autonomous region of Tatarstan. On average across the country,
+schools located in a city of a large city have the effect of almost 0.7
+EYOS in comparison to rural schools. In the Republic of Tatarstan, the
+gap is even higher, with the urban schools producing the advantage in
+cognitive skills that is more than 1 year of schooling in comparison to
+the rural schools. While the urban landscapes of Moscow City, BSJZ, Hong
+Kong and Macao, obviously, do not allow for drawing such a comparison,
+the effect of area was not significant in Brazil, which potentially can
+be explained by the overlap between the spatial and socio-economic
+inequalities in the country.
+
+Findings with respect to teacher qualification appear to be somewhat
+surprising. Measured as the share of teachers holding at least a
+Master's degree or equivalent, this variable produces statistically
+significant effects only in Tatarstan and Brazil. In Tatarstan, an
+increase in the number of qualified teachers by 2\% would result in more
+than 0.5 EYOS. However, in Brazil this would translate into as much as
+2.3 EYOS. This highlights unique opportunities for boosting learning
+through investment in teachers' qualifications. The potential
+explanation for the insignificant effects in urban settings could
+potentially refer to the fact that, for example, in Russia it is quite
+common for a teacher to have an advanced university degree. As Tatarstan
+sample includes the region's capital, Kazan, and other rural schools,
+the effects that are averaged across the country overall and in such
+areas as Moscow City and Moscow Region (the capital and its geographic
+proximity), might be pronounced when it comes to this specific
+administrative unit. While the variable on teachers with Master's was
+not included in Macao data, insignificant effects Hong Kong could arise
+due to the overall high level of teacher qualifications, as almost half
+of teachers in the sampled schools of Hong Kong hold a Master's degree.
+A more interesting conclusion refers to BSJZ. Although the share of
+teachers holding a Master's degree in BSJZ exhibits quite high
+statistical variation with respect to the mean (SD ≈ 0.14 around a mean
+of 0.14), this variation does not translate into measurable differences
+in student learning outcomes. This likely reflects the fact that higher
+qualifications do not necessarily correspond to higher pedagogical
+quality or greater instructional variation within this highly
+standardized system. In other words, the effect could potentially denote
+dominance of systemic factors (standardized curricula and strong
+accountability) and the limited link between formal degrees of the
+teaching staff and classroom instructional quality.
+
+The effects of student-teacher ratio were found to be significant in the
+country-level samples of Russia and Brazil. For example, in Russia a
+10-student increase in the student--teacher ratio is associated with a
+reduction of about 0.42 equivalent years of schooling. This effect is
+less pronounced in Brazil, where increase in 10 students per teacher
+would translate into the losses equivalent to 1.4 years of schooling.
+
+Interesting effects were observed with respect to class size, showing
+significance in BSJZ and Hong Kong. Importantly, class size establishes
+a curvilinear relationship with quality of learning, as both the
+coefficient itself and its quadratic terms produce statistically
+significant effects. While initially increasing the number of students
+per class improves learning, its effect diminishes after reaching a
+certain saturation point.
+
+The information on school ownership was collected for the samples of
+BSJZ, Hong Kong, Macao, and Brazil. In the case of Hong Kong, the
+fixed-effect model matrix was rank-deficient, and the school ownership
+variable was automatically dropped during model convergence due to a
+lack of within-group variation. For BSJZ and Macao, private schools did
+not show statistically significant effects on learning. However, the
+effect was very substantial in Brazil, where enrollment in private
+school leads to learning gains equivalent to almost 0.9 years of
+schooling.
+
+Finally, the self-reported measures of school infrastructure collected
+from principals did not exhibit a statistically significant association
+with learning outcomes. This finding may indicate that the subjective
+nature of the indicator introduces measurement error or social
+desirability bias, thereby obscuring its true relationship with
+instructional quality and student performance.
+
+\subsection{The Role of Socio-Demographic Factors: Exogenous Effects
+Matter}\label{the-role-of-socio-demographic-factors-exogenous-effects-matter}
+
+While socio-demographic factors that describe individual characteristics
+are not policy-sensitive and malleable and are associated with exogenous
+variation in cognitive skills, understanding their role in shaping
+learning is critical in the context of analyzing productivity of
+education systems. As such, the analysis identifies gender of a child as
+a very strong factor associated with learning. Its effect is
+statistically significant across all samples with the exception of
+Macao. To be more concrete, being male produces substantially negative
+effects on learning, identifying the disadvantage faced by boys in their
+cognitive skill gains. The magnitude of the gender effect is the most
+pronounced in Tatarstan, where the average loss of boys accounts for
+0.86 EYOS. These effects are less pronounced in Moscow Region, Russia,
+and Hong Kong samples, yet they account more than 0.5 EYOS. For BSJZ,
+Brazil, and Moscow City they range between 0.2 and 0.4 EYOS. These
+findings underscore substantial disadvantage of boys in human capital
+gains by the end of compulsory education.
+
+Language minority status is another dimension that identifies
+vulnerability in the acquisition of cognitive skills. Its effect is
+statistically significant across all selected samples with the exception
+of Hong Kong. In Macao, BSJZ, Moscow City, Moscow Region, and Russia
+overall, being a language minority results in the loss of learning
+equivalent to more than 1 year of schooling. In Brazil and Tatarstan
+samples it is above 0.5 EYOS. This finding identifies a necessity of
+integrating language minorities, who often are indigenous populations of
+certain areas within studied territories, and creating targeted
+interventions directed at these groups in terms of providing support for
+their learning.
+
+Finally, socio-economic status produces advantage in gaining cognitive
+skills, with the effect being significant in comparison to the students
+from the bottom 40\% by SES in all territories with the exception of
+Hong Kong. Russian national sample is the one where advantage of the
+students from the families at the top 10\% of socio-economic ladder is
+the most pronounced: it results in more than 0.75 EYOS in comparison to
+the children from the poorest families. The effects in BSJZ, Moscow
+City, Brazil, and Moscow Region are all above 0.5 of the school year.
+The lowest magnitude of socio-economic advantage is found in the sample
+of Macao students, where the effect is still substantially large to be
+ignored and equivalents 0.26 years of schooling.
+
+\subsection{Effect of Non-Cognitive
+Skills}\label{effect-of-non-cognitive-skills}
+
+As this research uses motivation to master tasks as a proxy of
+non-cognitive skills, the models confirm the existing agenda in the
+economics of education literature that personality traits are
+productive. As it becomes increasingly evident that non-cognitive skills
+are malleable, accounting for these traits in the education production
+function offers a new pathway where learning can be improved. The
+findings suggest that motivation to master tasks produces significant,
+positive, and substantial effects on learning across all studied
+samples. Its effect is the most pronounced in Russia and Brazil, where
+an increase in task mastery by 1 standard deviation results in gains
+equivalent to more than 0.2 years of schooling. These effects are
+somewhat lower, in the range of 0.15-0.20 EYOS, in such territories as
+Moscow Region, Tatarstan, Hong Kong, and Moscow City. Finally, while the
+lowest effects of motivation are observed in Macao and BSJZ, yielding a
+gain of 0.10 EYOS. Although this is the smallest effect observed, it is
+sufficiently high, marking that the influence of personality remains
+consistently significant and high across all countries and territories
+examined.
+
+\subsection{SES of School: Peer-Effects Play a
+Role}\label{ses-of-school-peer-effects-play-a-role}
+
+Lastly, the social environment in which learning occurs exerts a
+powerful influence on student achievement. In the model, peer effects
+are approximated by the average ESCS index at the school level,
+calculated from the individual ESCS values of enrolled students. This
+indicator captures the broader socioeconomic context of the school ---
+reflecting not only the material resources available but also the
+prevailing norms, aspirations, and learning culture that shape students'
+engagement and motivation.
+
+Though the effect of the average school ESCS varies across samples, even
+at its lowest bound, it is staggering. A one-standard deviation increase
+in the average school-level ESCS is associated with learning gains
+equivalent to approximately 0.95 years of schooling in Brazil, over 2
+years in Russia and Tatarstan, and more than 3.5 years in Hong Kong.
+These results point to the critical role of peer composition in shaping
+educational outcomes.
+
+Even after controlling for individual socio-economic status, students
+benefit substantially from being surrounded by peers from wealthier
+backgrounds. This suggests that the collective advantages of attending a
+high-SES school amplify individual learning beyond what personal
+background alone would predict. Conversely, students in schools with
+high concentrations of socio-economically disadvantaged peers may
+experience compound disadvantages, as resource constraints, limited
+aspirations, and peer disengagement reinforce each other. Furthermore,
+it means that schools with high concentrations of wealthy students are
+significantly better at producing cognitive skills, even when students
+from poor backgrounds receive the same curriculum, hours of teaching, or
+instruction quality.
+
+The persistence of such large peer effects underscores a fundamental
+equity challenge: learning outcomes are not determined solely by
+individual effort or instructional quality but also by the
+socio-economic composition of the classroom. In practice, this means
+that inequalities in the distribution of students across schools, which
+occur through residential segregation, selective admissions, or other
+mechanisms, further translate into inequalities in human capital
+acquisition.
+
+\subsection{Disparities in Learning Gains due to Family
+SES}\label{disparities-in-learning-gains-due-to-family-ses}
+
+A supplementary research question in this study examines whether
+learning gains are heterogeneous with respect to students'
+socio-economic backgrounds. The second bloc of mixed-effects models
+(outlined in Section~\ref{sec-app6}) incorporates a random slope for
+grade by ESCS percentile groups, enabling an assessment of how schooling
+productivity varies across students from different socio-economic
+strata. The estimated coefficients are presented in Figure~\ref{fig-m2}.
+
+The results indicate that SES does indeed contribute to significant
+variations in the amount of cognitive skills gained by students.
+However, the extent of these variations is highly contingent on the
+socio-economic and cultural context of each country or territory.
+Specifically, in Hong Kong and Macao students from the bottom 40\% of
+the socio-economic distribution exhibit same learning gains as those
+from the middle 50\% and top 10\%, holding it at about 20\% and 30\% of
+SD respectively.
+
+Brazil, on the contrary, is the only country where skills gained by a
+student in one academic year are dramatically higher if they come from a
+wealthier family. As such, while students from the bottom 40\% of
+families gain 31\% of SD per academic year, the students from the top
+10\% families gain 43\% of SD in learning. In this sense, the effects of
+gross educational productivity with respect to general volumes of
+learning match those of net educational productivity, i.e., amount of
+learning acquired in a unit of time (academic year).
+
+This pattern does not hold true for other territories. In BSJZ, Russia,
+and Russian administrative units, while the poorest students have less
+cognitive skills, they learn more in academic year. This result can be
+explained by the floor effect, when overall higher volumes of learning
+observed among students from the wealthier families result in lower
+learning gains. In other words, while overall higher cognitive skills
+are associated with higher SES, diminishing returns come to play once we
+place the amount of skills gained along the socio-economic gradient.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{manuscript_files/figure-pdf/fig-m2-1.pdf}
+
+}
+
+\caption{\label{fig-m2}Learning Gains Over 1 Academic Year by
+Country/Territory and Socio-Economic Percentile Group of a Student
+Family, Coefficients of Mixed-Effects Model}
+
+\end{figure}%
+
+\subsection{Disparities in Learning Gains due to School
+SES}\label{disparities-in-learning-gains-due-to-school-ses}
+
+Just like socio-economic background of a student has impact on both
+their learning volumes overall and their learning gains, so do peer
+effects expressed in the socio-economic environment in schools. The fact
+that schools with the higher share of wealthier students produce more
+cognitive skills even with the same curricula makes it important to
+explore the differences in learning gains associated with the
+concentration of poorer or wealthier students in certain schools. Do
+children who study in schools where the majority of students come from
+economically disadvantaged families learn less per academic year than
+those who study in wealthier schools? In other words, at this stage the
+research explores the question of whether concentration of students with
+certain socio-economic backgrounds results in differences in learning
+gains per academic year. The results of the third block of mixed-effects
+models are shown on Figure~\ref{fig-m3} (full models are referenced in
+Section~\ref{sec-app7}).
+
+The findings of the third model are substantially more consistent across
+territories, confirming that the more wealthy students a school has, the
+higher the learning gains per academic year.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{manuscript_files/figure-pdf/fig-m3-1.pdf}
+
+}
+
+\caption{\label{fig-m3}Learning Gains Over 1 Academic Year by
+Country/Territory and Socio-Economic Percentile Group of School,
+Coefficients of Mixed-Effects Model}
+
+\end{figure}%
+
+\section{Discussion}\label{discussion}
+
+This study examines the formation of cognitive skills, approximated by
+reading scores, in secondary education across Brazil, Russia, and
+selected Chinese administrative units. While differences in educational
+outcomes between countries are well documented, this analysis moves
+beyond describing disparities in skills as the output of education
+process and focuses instead on the inputs and mechanisms that drive
+school productivity, as well as on how these inputs produce
+heterogeneous effects on learning. The discussion below focuses on three
+interrelated mechanisms identified by the study: institutional
+stratification reflected in between-school variance, the role of peer
+composition in shaping learning opportunities, and the complementary
+function of non-cognitive skills in skill formation.
+
+The results highlight that though schools are expected to play central
+role in equipping children with cognitive skills, the magnitude of
+school-level factors in explaining variation in learning shows
+substantial heterogeneity both between and within countries. The
+differences observed in the share of between-school variance in learning
+range from approximately 15\% in Moscow City to over 50\% in BSJZ,
+illustrating how the structure of education systems shapes the relative
+role of schools in skill formation. Previous literature has shown that
+higher between-school variance is often associated with greater
+institutional stratification, including early tracking, selective
+admissions, and unequal resource allocation between schools (Hanushek \&
+Woessmann, 2011). In the context of the findings produced by this study,
+it suggest that the Chinese education system exhibits higher
+institutional stratification than the Russian one, with Brazil in
+between. Importantly, low between-school variance in Moscow City does
+not imply that schools are not important for learning. Given the high
+levels of gross educational productivity in Moscow, low between-school
+variation in cognitive skills comes primarily not from the institutional
+heterogeneity but from factors within schools, often linked to
+individual or household characteristics. The case of Moscow City
+exemplifies how high quality of educational output can coexist with low
+between-school variance, reflecting that cognitive skills are more
+evenly distributed across schools.
+
+Further, the findings of this study highlight significant spatial
+inequalities in the production of cognitive skills within and across
+countries, particularly for China and Russia, where different
+administrative units were analyzed separately. Previous analysis on the
+Russian PISA data underscored the same result, highlighting that OECD
+countries produce smaller variation in learning outcomes than Russian
+regions (Adamovich et al., 2019). These spatial disparities reflect the
+uneven distribution of resources and institutional capacities across
+regions. In stratified systems, territorial differences in school
+quality compound socio-economic inequalities, resulting in
+geographically uneven distribution of cognitive achievement within
+countries.
+
+The strong impact of socio-economic composition of students at the
+school level on cognitive achievement underscores the power of peer
+effects, which can outweigh the benefits of an additional year of
+schooling. Schools with higher proportion of affluent students are more
+likely to foster better development of cognitive skills, while schools
+with a substantial concentration of economically disadvantaged students
+tend to produce lower skill levels despite similar curricula or teacher
+qualification. This pattern is aligned with the so-called Matthew effect
+in education (Bonoli et al., 2017; Rigney, 2010; Stanovich, 2009;
+Walberg \& Tsai, 1983). The term was coined out by American sociologist
+R. Merton (Merton, 1968, 1988) and it suggests that cumulative advantage
+begets further advantage. With that respect, policies need to address
+the inequalities in learning gains by focusing on the needs of the
+poorest students.
+
+Furthermore, these findings are in many ways in line with the existing
+human capital literature. According to a widely accepted growth model of
+human capital accumulation, individual productivity measured by earnings
+is a function of social interaction with others, suggesting that an
+individual learns more when they interact with more productive people
+(Lucas, 2015).
+
+Overall this highlights the role of schools in reproducing, rather than
+mitigating, socio-economic inequality. As was rightly mentioned, schools
+function as equalizers as long as they mix children from different
+socio-economic backgrounds and provide integrated peer
+groups(Agostinelli et al., 2020). On the contrast, schools with great
+concentration of students belonging to a certain socio-economic strata
+instead of being ``great equalizer'' rather reinforce inequality,
+contributing to a segregated education system that mirrors broader
+social divisions.
+
+Finally, the analysis underscores a pivotal role of motivation to
+achieve and master tasks in shaping educational productivity. Although
+personality traits were initially considered exogenous to educational
+outcomes (Bowles, 1970), advances in psychology and economics have
+highlighted the significant returns to these traits. Classified in
+economics as non-cognitive skills due to their malleability in early
+childhood, personality traits have been shown to exert substantial
+influence on a wide range of socio-economic outcomes (Borghans et al.,
+2008).
+
+The findings of this study on the potential of task mastery to boost
+learning are broadly consistent with previous research on the role of
+non-cognitive skills in academic performance. It is also known that
+development of task mastery offers a promising path to boost cognitive
+skills, particularly among economically disadvantaged students
+(Avanesian et al., 2022). Overall, the results of the analysis in this
+study highlight that integrating non-cognitive skills into discussions
+of educational productivity, both as part of the human capital
+production function and as a factor sensitive to policy intervention
+(Heckman et al., 2006), is essential for advancing educational theory
+and practice. Furthermore, they follow a well-known ``skills beget
+skills'' logic, when the stock of skills in non-cognitive domain results
+in advances in gaining cognitive skills (Cunha et al., 2006; Cunha et
+al., 2010; Cunha \& Heckman, 2007).
+
+Taken together, these findings reveal how institutional heterogeneity,
+peer composition, and individual non-cognitive skills interact to shape
+cognitive skills, both in gross and net productivity terms. Addressing
+educational inequality therefore requires a dual focus. On the one hand,
+system-level reforms are needed to reduce spatial and peer segregation
+observed on the supply side of education. On the other hand, targeted
+interventions that strengthen capacity of students, particularly from
+the disadvantaged backgrounds, to benefit from learning refer to
+measures aimed at demand side of education systems. This combined
+approach is essential for fostering both equity and efficiency in
+education systems.
+
+\section{Research Limitations}\label{research-limitations}
+
+The study is subject to several limitations stemming from both data
+constraints and the econometric verification strategy employed. First,
+the data used in this analysis are cross-sectional, and the absence of
+longitudinal records on individual learning outcomes restricts the
+estimation of learning gains to a set of specific assumptions. Although
+prior economic literature has approximated learning gains over one
+academic year by relying on academic grades, it is important to note
+that having multiple records per student would enable a more precise
+estimation of these gains.
+
+Further, the lack of nationally representative data on China does not
+allow for drawing meaningful comparison between Brazil, China, and
+Russia. The availability of data only for selected urban centers does
+not allow, on the one hand, to have the full picture of cognitive skill
+formation in urban settings overall. However, and more importantly, it
+is impossible to estimate the role of urban-rural disparities and role
+of spatial segregation in learning.
+
+Additionally, while efforts were made to balance the selection of
+variables within the model, data limitations, particularly regarding
+missingness, precluded the inclusion of certain relevant factors, such
+as school infrastructure indicators (e.g., the proportion of computers
+with internet access). Furthermore, the absence of data on the
+proportion of teachers holding a Master's degree or equivalent in Macao
+necessitated the exclusion of this administrative unit from the study.
+
+Another limitation concerns the estimation of peer effects using average
+measures. In practice, this approach captures only the concentration of
+students in schools based on family wealth, without providing insights
+into actual social cohesion or networks that may more accurately reflect
+the mechanisms through which peer interactions influence learning
+outcomes.
+
+Lastly, a common issue with education production functions lies in the
+difficulty of interpreting results in a strictly causal manner. Although
+efforts were made to address endogeneity at both the school and country
+levels by adopting random effect terms in the model, this approach
+cannot be considered sufficient to fully establish causal relationships.
+Nevertheless, the findings can serve as a valuable guide for informing
+educational policies and programs.
+
+\section{Conclusions}\label{conclusions}
+
+This study estimates cognitive skill gains across Brazil, China, and
+Russia using an education production function approach. By adopting a
+mixed-effects model, which separates variation at both the country and
+school levels, the paper explores the influence of endogenous and
+exogenous factors at the individual, household, and school levels on
+educational productivity. The results demonstrate that inequality in
+human capital production persists not only between countries but also
+within them. Specifically, the study identifies the significant impact
+of socio-economic factors, both at the individual level and through peer
+effects at the school level.
+
+The findings confirm that students from the poorest households
+consistently fall behind in learning, and schools with a high
+concentration of disadvantaged students tend to produce less skills.
+This has far-reaching implications for the reproduction of poverty
+patterns and imposes limitations on intergenerational social mobility.
+The fact that students exposed to the same curricula, mode of
+instruction, and teachers of the same qualification can accumulate less
+human capital simply due to attending schools with a high concentration
+of disadvantaged peers underscores the role of education systems in
+perpetuating socio-economic segregation.
+
+To address this issue, governments must implement targeted policies,
+allocate additional resources, and pursue interventions that
+specifically support disadvantaged schools and students. Particular
+attention should be given to non-cognitive skills, such as fostering
+motivation to achieve and master tasks, which plays a crucial role in
+narrowing the achievement gap.
+
+Future research should expand the sample of studied countries and
+territories to further explore the relationship between learning volumes
+and gains, particularly to determine whether diminishing returns are at
+play in the production of educational outcomes.
+
+\section{\texorpdfstring{\textbf{Data Availability
+Statement}}{Data Availability Statement}}\label{data-availability-statement}
+
+To carry out the analysis, the data of the PISA 2018 were used. The
+datasets are publicly available on the website:
+\url{https://www.oecd.org/en/about/programmes/pisa/pisa-data.html}.
+
+The R codes for the analysis can be found via the following link:\\
+\url{https://github.com/karavan88/EduProdFunctionPISA}.
+
+\section{References}\label{references}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-hsepisa2019}
+Adamovich, K., Kapuza, A., Zakharov, A., \& Froumin, I. (2019).
+\emph{Russia results in math, reading, and science in pisa 2018 and what
+they say about education in the country}. Higher School of Economics.
+\url{https://ioe.hse.ru/pubs/share/direct/409673299.pdf}
+
+\bibitem[\citeproctext]{ref-agostinelli2020}
+Agostinelli, F., Doepke, M., Sorrenti, G., \& Zilibotti, F. (2020).
+\emph{When the great equalizer shuts down: Schools, peers, and parents
+in pandemic times}. \url{https://doi.org/10.3386/w28264}
+
+\bibitem[\citeproctext]{ref-altinok2017}
+Altinok, N., \& Aydemir, A. (2017). Does one size fit all? The impact of
+cognitive skills on economic growth. \emph{Journal of Macroeconomics},
+\emph{53}, 176--190. \url{https://doi.org/10.1016/j.jmacro.2017.06.007}
+
+\bibitem[\citeproctext]{ref-avanesian2022}
+Avanesian, G., Borovskaya, M., Ryzhova, V., Kirik, V., Egorova, V., \&
+Bermous, A. (2022). Can we improve learning outcomes of schoolchildren
+from the poorest families by investing into their non-cognitive skills?
+Causal analysis using propensity score matching. \emph{Voprosy
+Obrazovaniya / Educational Studies Moscow}, \emph{1}, 13--53.
+\url{https://doi.org/10.17323/1814-9545-2022-1-13-53}
+
+\bibitem[\citeproctext]{ref-howmuch2021}
+Avvisati, F., \& Givord, P. (2021a). \emph{How much do 15-year-olds
+learn over one year of schooling? An international comparison based on
+PISA}. \url{https://doi.org/10.1787/a28ed097-en}
+
+\bibitem[\citeproctext]{ref-thelear2021}
+Avvisati, F., \& Givord, P. (2021b). \emph{The learning gain over one
+school year among 15-year-olds}.
+\url{https://doi.org/10.1787/d99e8c0a-en}
+
+\bibitem[\citeproctext]{ref-avvisati2023}
+Avvisati, F., \& Givord, P. (2023). The learning gain over one school
+year among 15-year-olds: An international comparison based on PISA.
+\emph{Labour Economics}, \emph{84}, 102365.
+\url{https://doi.org/10.1016/j.labeco.2023.102365}
+
+\bibitem[\citeproctext]{ref-bates2015}
+Bates, D., Machler, M., Bolker, B., \& Walker, S. (2015). Fitting Linear
+Mixed-Effects Models Using lme4. \emph{Journal of Statistical Software},
+\emph{67}(1). \url{https://doi.org/10.18637/jss.v067.i01}
+
+\bibitem[\citeproctext]{ref-bonoli2017}
+Bonoli, G., Cantillon, B., \& Lancker, W. V. (2017). \emph{Social
+investment and the matthew effect}. Oxford University Press.
+\url{https://doi.org/10.1093/oso/9780198790488.003.0005}
+
+\bibitem[\citeproctext]{ref-borghans2008}
+Borghans, L., Duckworth, A. L., Heckman, J. J., \& Weel, B. ter. (2008).
+The Economics and Psychology of Personality Traits. \emph{Journal of
+Human Resources}, \emph{43}(4), 972--1059.
+\url{https://doi.org/10.1353/jhr.2008.0017}
+
+\bibitem[\citeproctext]{ref-bowles1970}
+Bowles, S. (1970). Towards an educational production function. In W. L.
+Hansen (Ed.), \emph{Education, income, and human capitals} (pp. 11--70).
+National Bureau of Economic Research (NBER).
+
+\bibitem[\citeproctext]{ref-bowles1968}
+Bowles, S., \& Levin, H. M. (1968). The determinants of scholastic
+achievement-an appraisal of some recent evidence. \emph{The Journal of
+Human Resources}, \emph{3}(1), 3. \url{https://doi.org/10.2307/144645}
+
+\bibitem[\citeproctext]{ref-brown1975}
+Brown, B. W., \& Saks, D. H. (1975). The Production and Distribution of
+Cognitive Skills within Schools. \emph{Journal of Political Economy},
+\emph{83}(3), 571--593. \url{https://doi.org/10.1086/260341}
+
+\bibitem[\citeproctext]{ref-buchholz2022}
+Buchholz, J., Cignetti, M., \& Piacentini, M. (2022). \emph{Developing
+measures of engagement in PISA}.
+\url{https://doi.org/10.1787/2d9a73ca-en}
+
+\bibitem[\citeproctext]{ref-caponera2016}
+Caponera, E., Sestito, P., \& Russo, P. M. (2016). The influence of
+reading literacy on mathematics and science achievement. \emph{The
+Journal of Educational Research}, \emph{109}(2), 197--204.
+\url{https://doi.org/10.1080/00220671.2014.936998}
+
+\bibitem[\citeproctext]{ref-cunha2007}
+Cunha, F., \& Heckman, J. (2007). The Technology of Skill Formation.
+\emph{American Economic Review}, \emph{97}(2), 31--47.
+\url{https://doi.org/10.1257/aer.97.2.31}
+
+\bibitem[\citeproctext]{ref-cunha2006}
+Cunha, F., Heckman, J. J., Lochner, L., \& Masterov, D. V. (2006).
+\emph{Chapter 12. Interpreting the evidence on life cycle skill
+formation} (pp. 697--812). Elsevier.
+\url{https://doi.org/10.1016/s1574-0692(06)01012-9}
+
+\bibitem[\citeproctext]{ref-cunha2010}
+Cunha, F., Heckman, J., \& Schennach, S. (2010). Estimating the
+Technology of Cognitive and Noncognitive Skill Formation.
+\emph{Econometrica}, \emph{78}(3), 883--931.
+\url{https://doi.org/10.3982/ecta6551}
+
+\bibitem[\citeproctext]{ref-dannemann2019}
+Dannemann, B. C. (2019). Peer effects in secondary education: Evidence
+from trends in mathematics and science study 2015 based on weak-tie
+bonds. \emph{Beiträge Zur Jahrestagung Des Vereins Für Socialpolitik
+2019: 30 Jahre Mauerfall - Demokratie Und Marktwirtschaft - Session:
+Education Economics II}.
+
+\bibitem[\citeproctext]{ref-epple2004}
+Epple, D., Figlio, D., \& Romano, R. (2004). Competition between private
+and public schools: testing stratification and pricing predictions.
+\emph{Journal of Public Economics}, \emph{88}(7-8), 1215--1245.
+\url{https://doi.org/10.1016/s0047-2727(02)00187-1}
+
+\bibitem[\citeproctext]{ref-epple2000b}
+Epple, D., Newlon, E., \& Romano, R. (2000). \emph{Ability tracking,
+school competition, and the distribution of educational benefits}.
+\url{https://doi.org/10.3386/w7854}
+
+\bibitem[\citeproctext]{ref-epple2000a}
+Epple, D., \& Romano, R. (2000). \emph{Neighborhood schools, choice, and
+the distribution of educational benefits}.
+\url{https://doi.org/10.3386/w7850}
+
+\bibitem[\citeproctext]{ref-epple1998}
+Epple, D., \& Romano, R. E. (1998). Competition between private and
+public schools, vouchers, and peer-group effects. \emph{The American
+Economic Review}, \emph{88}(1), 33--62.
+\url{http://www.jstor.org/stable/116817}
+
+\bibitem[\citeproctext]{ref-evans2019}
+Evans, D. K., \& Yuan, F. (2019). \emph{Equivalent Years of Schooling: A
+Metric to Communicate Learning Gains in Concrete Terms}. World Bank,
+Washington, DC. \url{https://doi.org/10.1596/1813-9450-8752}
+
+\bibitem[\citeproctext]{ref-glewwe2006}
+Glewwe, P., \& Kremer, M. (2006). \emph{Chapter 16. Schools, teachers,
+and education outcomes in developing countries} (pp. 945--1017).
+Elsevier. \url{https://doi.org/10.1016/s1574-0692(06)02016-2}
+
+\bibitem[\citeproctext]{ref-goldhaber1997}
+Goldhaber, D. D., \& Brewer, D. J. (1997). Why don't schools and
+teachers seem to matter? Assessing the impact of unobservables on
+educational productivity. \emph{The Journal of Human Resources},
+\emph{32}(3), 505. \url{https://doi.org/10.2307/146181}
+
+\bibitem[\citeproctext]{ref-brempong1991}
+Gyimah-Brempong, K., \& Gyapong, A. O. (1991). Production of Education:
+Are Socioeconomic Characteristics Important Factors? \emph{Eastern
+Economic Journal}, \emph{17}(4), 507--521.
+
+\bibitem[\citeproctext]{ref-hanchane2012}
+Hanchane, S., \& Mostafa, T. (2012). Solving endogeneity problems in
+multilevel estimation: an example using education production functions.
+\emph{Journal of Applied Statistics}, \emph{39}(5), 1101--1114.
+\url{https://doi.org/10.1080/02664763.2011.638705}
+
+\bibitem[\citeproctext]{ref-hanushek1979}
+Hanushek, E. A. (1979). Conceptual and empirical issues in the
+estimation of educational production functions. \emph{The Journal of
+Human Resources}, \emph{14}(3), 351.
+\url{https://doi.org/10.2307/145575}
+
+\bibitem[\citeproctext]{ref-hanushek1987}
+Hanushek, E. A. (1987). \emph{Educational production functions} (pp.
+33--42). Elsevier.
+\url{https://doi.org/10.1016/b978-0-08-033379-3.50013-9}
+
+\bibitem[\citeproctext]{ref-hanushek2020}
+Hanushek, E. A. (2020). \emph{Education production functions} (pp.
+161--170). Elsevier.
+\url{https://doi.org/10.1016/b978-0-12-815391-8.00013-6}
+
+\bibitem[\citeproctext]{ref-educatio2007}
+Hanushek, E. A., \& Woessmann, L. (2007). \emph{Education quality and
+economic growth}. \url{https://doi.org/10.1596/978-0-8213-7058-2}
+
+\bibitem[\citeproctext]{ref-hanushek2008}
+Hanushek, E. A., \& Woessmann, L. (2008). The Role of Cognitive Skills
+in Economic Development. \emph{Journal of Economic Literature},
+\emph{46}(3), 607--668. \url{https://doi.org/10.1257/jel.46.3.607}
+
+\bibitem[\citeproctext]{ref-hanushek2011}
+Hanushek, E. A., \& Woessmann, L. (2011). \emph{The economics of
+international differences in educational achievement} (pp. 89--200).
+Elsevier. \url{https://doi.org/10.1016/b978-0-444-53429-3.00002-8}
+
+\bibitem[\citeproctext]{ref-hanushek2015}
+Hanushek, E. A., \& Woessmann, L. (2015). \emph{The knowledge capital of
+nations: Education and the economics of growth}. The MIT Press.
+\url{https://doi.org/10.7551/mitpress/9780262029179.001.0001}
+
+\bibitem[\citeproctext]{ref-heckman2006a}
+Heckman, James~J., Stixrud, J., \& Urzua, S. (2006). The Effects of
+Cognitive and Noncognitive Abilities on Labor Market Outcomes and Social
+Behavior. \emph{Journal of Labor Economics}, \emph{24}(3), 411--482.
+\url{https://doi.org/10.1086/504455}
+
+\bibitem[\citeproctext]{ref-khan2007}
+Khan, S. R., \& Kiefer, D. (2007). Educational Production Functions for
+Rural Pakistan: A Comparative Institutional Analysis. \emph{Education
+Economics}, \emph{15}(3), 327--342.
+\url{https://doi.org/10.1080/09645290701273590}
+
+\bibitem[\citeproctext]{ref-lucas2015}
+Lucas, R. E. (2015). Human Capital and Growth. \emph{American Economic
+Review}, \emph{105}(5), 85--88.
+\url{https://doi.org/10.1257/aer.p20151065}
+
+\bibitem[\citeproctext]{ref-mcclung1977}
+McClung, R. L. (1977). \emph{Identification of an educational production
+function for diverse technologies} (CDT-77/2). Center for Development
+Technology, Washington University.
+
+\bibitem[\citeproctext]{ref-merton1968}
+Merton, R. K. (1968). The Matthew Effect in Science. \emph{Science},
+\emph{159}(3810), 56--63.
+\url{https://doi.org/10.1126/science.159.3810.56}
+
+\bibitem[\citeproctext]{ref-merton1988}
+Merton, R. K. (1988). The Matthew Effect in Science, II: Cumulative
+Advantage and the Symbolism of Intellectual Property. \emph{Isis},
+\emph{79}(4), 606--623. \url{https://doi.org/10.1086/354848}
+
+\bibitem[\citeproctext]{ref-mincer1958}
+Mincer, J. (1958). Investment in Human Capital and Personal Income
+Distribution. \emph{Journal of Political Economy}, \emph{66}(4),
+281--302. \url{https://doi.org/10.1086/258055}
+
+\bibitem[\citeproctext]{ref-monk1989}
+Monk, D. H. (1989). The Education Production Function: Its Evolving Role
+in Policy Analysis. \emph{Educational Evaluation and Policy Analysis},
+\emph{11}(1), 31--45. \url{https://doi.org/10.3102/01623737011001031}
+
+\bibitem[\citeproctext]{ref-pisa2012019c}
+OECD. (2019a). \emph{PISA 2018 Assessment and Analytical Framework}.
+\url{https://doi.org/10.1787/b25efab8-en}
+
+\bibitem[\citeproctext]{ref-pisa2012019a}
+OECD. (2019b). PISA 2018 results (volume i). In \emph{PISA}.
+\url{https://doi.org/10.1787/5f07c754-en}
+
+\bibitem[\citeproctext]{ref-pisa2012019b}
+OECD. (2019c). \emph{PISA 2018 Results (Volume II)}.
+\url{https://doi.org/10.1787/b5fd1b8f-en}
+
+\bibitem[\citeproctext]{ref-R}
+R Core Team. (2021). \emph{R: A language and environment for statistical
+computing}. R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}
+
+\bibitem[\citeproctext]{ref-rigney2010}
+Rigney, D. (2010). Matthew effects in education and culture. In
+\emph{The matthew effect: How advantage begets further advantage} (pp.
+75--86). Columbia University Press.
+\url{http://www.jstor.org/stable/10.7312/rign14948.8}
+
+\bibitem[\citeproctext]{ref-sacerdote2011}
+Sacerdote, B. (2011). \emph{Peer Effects in Education: How Might They
+Work, How Big Are They and How Much Do We Know Thus Far?} (pp.
+249--277). Elsevier.
+\url{https://doi.org/10.1016/b978-0-444-53429-3.00004-1}
+
+\bibitem[\citeproctext]{ref-simmons1978}
+Simmons, J., \& Alexander, L. (1978). The Determinants of School
+Achievement in Developing Countries: A Review of the Research.
+\emph{Economic Development and Cultural Change}, \emph{26}(2), 341--357.
+\url{https://doi.org/10.1086/451019}
+
+\bibitem[\citeproctext]{ref-stanovich2009}
+Stanovich, K. E. (2009). Matthew Effects in Reading: Some Consequences
+of Individual Differences in the Acquisition of Literacy. \emph{Journal
+of Education}, \emph{189}(1-2), 23--55.
+\url{https://doi.org/10.1177/0022057409189001-204}
+
+\bibitem[\citeproctext]{ref-todd2003}
+Todd, P. E., \& Wolpin, K. I. (2003). On the Specification and
+Estimation of the Production Function for Cognitive Achievement.
+\emph{The Economic Journal}, \emph{113}(485), F3--F33.
+\url{https://doi.org/10.1111/1468-0297.00097}
+
+\bibitem[\citeproctext]{ref-vittadini2022}
+Vittadini, G., Sturaro, C., \& Folloni, G. (2022). Non-Cognitive Skills
+and Cognitive Skills to measure school efficiency. \emph{Socio-Economic
+Planning Sciences}, \emph{81}, 101058.
+\url{https://doi.org/10.1016/j.seps.2021.101058}
+
+\bibitem[\citeproctext]{ref-walberg1983}
+Walberg, H. J., \& Tsai, S.-L. (1983). Matthew Effects in Education.
+\emph{American Educational Research Journal}, \emph{20}(3), 359--373.
+\url{https://doi.org/10.3102/00028312020003359}
+
+\bibitem[\citeproctext]{ref-zhu2021}
+Zhu, Y. (2021). Reading matters more than mathematics in science
+learning: an analysis of the relationship between student achievement in
+reading, mathematics, and science. \emph{International Journal of
+Science Education}, \emph{44}(1), 1--17.
+\url{https://doi.org/10.1080/09500693.2021.2007552}
+
+\end{CSLReferences}
+
+\newpage
+
+\section{Appendix}\label{appendix}
+
+\subsection{Correlation between learning outcomes}\label{sec-app1}
+
+\includegraphics{manuscript_files/figure-pdf/unnamed-chunk-1-1.pdf}
+
+\subsection{Table of descriptive statistics of the variables of
+study}\label{sec-app2}
+
+\begin{table}
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llrrrrr}
+\toprule
+Country/Territory & Variable & mean & sd & median & min & max \\ 
+\midrule\addlinespace[2.5pt]
+B-S-J-Z (China) & Reading Score & 0.60 & 0.83 & 0.67 & -2.48 & 2.87 \\ 
+B-S-J-Z (China) & Task Mastery & 0.33 & 0.95 & -0.10 & -2.89 & 1.93 \\ 
+B-S-J-Z (China) & Class Size & 38.84 & 8.19 & 38.00 & 13.00 & 53.00 \\ 
+B-S-J-Z (China) & Student-Teacher Ratio & 10.65 & 6.17 & 10.02 & 1.00 & 100.00 \\ 
+B-S-J-Z (China) & Poor School Infrastructire & 0.08 & 0.27 & 0.00 & 0.00 & 1.00 \\ 
+B-S-J-Z (China) & Qualified Teachers (\%) & 0.14 & 0.13 & 0.10 & 0.00 & 0.77 \\ 
+B-S-J-Z (China) & School ESCS (avg) & -0.07 & 0.67 & -0.08 & -1.61 & 1.52 \\ 
+Brazil & Reading Score & -0.80 & 0.92 & -0.85 & -3.17 & 2.36 \\ 
+Brazil & Task Mastery & 0.29 & 1.07 & -0.10 & -2.89 & 1.93 \\ 
+Brazil & Class Size & 35.69 & 7.54 & 38.00 & 13.00 & 53.00 \\ 
+Brazil & Student-Teacher Ratio & 29.05 & 16.68 & 25.60 & 1.44 & 100.00 \\ 
+Brazil & Poor School Infrastructire & 0.18 & 0.38 & 0.00 & 0.00 & 1.00 \\ 
+Brazil & Qualified Teachers (\%) & 0.09 & 0.13 & 0.05 & 0.00 & 1.00 \\ 
+Brazil & School ESCS (avg) & -0.69 & 0.71 & -0.75 & -3.20 & 1.26 \\ 
+Hong Kong & Reading Score & 0.28 & 0.90 & 0.38 & -2.93 & 2.75 \\ 
+Hong Kong & Task Mastery & -0.02 & 0.89 & -0.10 & -2.89 & 1.93 \\ 
+Hong Kong & Class Size & 27.73 & 5.13 & 28.00 & 13.00 & 38.00 \\ 
+Hong Kong & Student-Teacher Ratio & 13.23 & 9.27 & 12.34 & 6.75 & 100.00 \\ 
+Hong Kong & Poor School Infrastructire & 0.04 & 0.21 & 0.00 & 0.00 & 1.00 \\ 
+Hong Kong & Qualified Teachers (\%) & 0.50 & 0.16 & 0.50 & 0.00 & 0.83 \\ 
+Hong Kong & School ESCS (avg) & -0.16 & 0.53 & -0.23 & -1.04 & 1.23 \\ 
+Macao & Reading Score & 0.26 & 0.85 & 0.33 & -2.96 & 2.43 \\ 
+Macao & Task Mastery & 0.01 & 0.90 & -0.10 & -2.89 & 1.93 \\ 
+Macao & Class Size & 29.20 & 6.07 & 28.00 & 13.00 & 43.00 \\ 
+Macao & Student-Teacher Ratio & NaN & NA & NA & Inf & -Inf \\ 
+Macao & Poor School Infrastructire & 0.09 & 0.29 & 0.00 & 0.00 & 1.00 \\ 
+Macao & Qualified Teachers (\%) & NaN & NA & NA & Inf & -Inf \\ 
+Macao & School ESCS (avg) & -0.17 & 0.43 & -0.27 & -0.94 & 0.89 \\ 
+Moscow City (RUS) & Reading Score & 0.34 & 0.81 & 0.40 & -2.90 & 2.50 \\ 
+Moscow City (RUS) & Task Mastery & -0.35 & 0.91 & -0.33 & -2.89 & 1.93 \\ 
+Moscow City (RUS) & Class Size & 25.21 & 2.81 & 23.00 & 18.00 & 33.00 \\ 
+Moscow City (RUS) & Student-Teacher Ratio & 19.21 & 5.50 & 18.63 & 1.00 & 42.78 \\ 
+Moscow City (RUS) & Poor School Infrastructire & 0.04 & 0.20 & 0.00 & 0.00 & 1.00 \\ 
+Moscow City (RUS) & Qualified Teachers (\%) & 0.47 & 0.45 & 0.18 & 0.00 & 1.00 \\ 
+Moscow City (RUS) & School ESCS (avg) & 0.78 & 0.19 & 0.77 & 0.40 & 1.32 \\ 
+Moscow Region (RUS) & Reading Score & -0.11 & 0.85 & -0.08 & -2.55 & 2.50 \\ 
+Moscow Region (RUS) & Task Mastery & -0.35 & 0.98 & -0.10 & -2.89 & 1.93 \\ 
+Moscow Region (RUS) & Class Size & 25.39 & 3.32 & 23.00 & 13.00 & 33.00 \\ 
+Moscow Region (RUS) & Student-Teacher Ratio & 19.74 & 10.92 & 18.38 & 2.70 & 88.85 \\ 
+Moscow Region (RUS) & Poor School Infrastructire & 0.07 & 0.25 & 0.00 & 0.00 & 1.00 \\ 
+Moscow Region (RUS) & Qualified Teachers (\%) & 0.56 & 0.43 & 0.82 & 0.00 & 1.00 \\ 
+Moscow Region (RUS) & School ESCS (avg) & 0.56 & 0.21 & 0.59 & -0.61 & 0.95 \\ 
+Russian Federation & Reading Score & -0.17 & 0.87 & -0.15 & -3.04 & 2.39 \\ 
+Russian Federation & Task Mastery & -0.34 & 0.93 & -0.10 & -2.89 & 1.93 \\ 
+Russian Federation & Class Size & 24.55 & 4.42 & 23.00 & 13.00 & 33.00 \\ 
+Russian Federation & Student-Teacher Ratio & 16.70 & 6.29 & 16.77 & 1.85 & 81.52 \\ 
+Russian Federation & Poor School Infrastructire & 0.07 & 0.25 & 0.00 & 0.00 & 1.00 \\ 
+Russian Federation & Qualified Teachers (\%) & 0.46 & 0.44 & 0.38 & 0.00 & 1.00 \\ 
+Russian Federation & School ESCS (avg) & 0.40 & 0.31 & 0.41 & -1.33 & 1.04 \\ 
+Tatarstan (RUS) & Reading Score & -0.32 & 0.86 & -0.32 & -3.12 & 2.57 \\ 
+Tatarstan (RUS) & Task Mastery & -0.28 & 0.96 & -0.10 & -2.89 & 1.93 \\ 
+Tatarstan (RUS) & Class Size & 23.90 & 5.30 & 23.00 & 13.00 & 53.00 \\ 
+Tatarstan (RUS) & Student-Teacher Ratio & 14.34 & 8.59 & 14.30 & 1.00 & 100.00 \\ 
+Tatarstan (RUS) & Poor School Infrastructire & 0.09 & 0.29 & 0.00 & 0.00 & 1.00 \\ 
+Tatarstan (RUS) & Qualified Teachers (\%) & 0.65 & 0.42 & 0.89 & 0.00 & 1.00 \\ 
+Tatarstan (RUS) & School ESCS (avg) & 0.38 & 0.29 & 0.38 & -0.95 & 1.14 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Probability density plots of reading by
+territory}\label{sec-app3}
+
+\includegraphics{manuscript_files/figure-pdf/unnamed-chunk-3-1.pdf}
+
+\subsection{Correlation matrix between the variables selected for the
+mixed-effects model}\label{sec-app4}
+
+\includegraphics{manuscript_files/figure-pdf/unnamed-chunk-4-1.pdf}
+
+\subsection{Mixed-effects regression models of learning gains by
+socio-economic status group, the models with random slope
+terms}\label{sec-app6}
+
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+entry=none,label=none,
+note{}={  },
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-9}{solid, black, 0.05em},
+hline{30}={1-9}{solid, black, 0.05em},
+hline{1}={1-9}{solid, black, 0.1em},
+hline{33}={1-9}{solid, black, 0.1em},
+column{2-9}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Russia & Moscow City & Moscow Region & Tatarstan & BSJZ & Hong Kong & Macao & Brazil \\
+(Intercept) & \num{-2.180} & \num{-3.082} & \num{-2.938} & \num{-2.551} & \num{-4.251} & \num{-4.007} & \num{-2.664} & \num{-4.150} \\
+& (\num{0.553}) *** & (\num{1.215}) * & (\num{1.625}) + & (\num{0.621}) *** & (\num{0.360}) *** & (\num{0.933}) *** & (\num{0.736}) *** & (\num{0.622}) *** \\
+School year & \num{0.258} & \num{0.347} & \num{0.359} & \num{0.240} & \num{0.323} & \num{0.199} & \num{0.330} & \num{0.356} \\
+& (\num{0.032}) *** & (\num{0.058}) *** & (\num{0.069}) *** & (\num{0.049}) *** & (\num{0.019}) *** & (\num{0.028}) *** & (\num{0.017}) *** & (\num{0.059}) *** \\
+Sex: Male & \num{-0.167} & \num{-0.131} & \num{-0.247} & \num{-0.208} & \num{-0.066} & \num{-0.120} & \num{-0.034} & \num{-0.089} \\
+& (\num{0.020}) *** & (\num{0.030}) *** & (\num{0.040}) *** & (\num{0.023}) *** & (\num{0.011}) *** & (\num{0.038}) ** & (\num{0.026}) & (\num{0.018}) *** \\
+Language minority & \num{-0.284} & \num{-0.467} & \num{-0.418} & \num{-0.128} & \num{-0.476} & \num{-0.024} & \num{-0.610} & \num{-0.216} \\
+& (\num{0.047}) *** & (\num{0.081}) *** & (\num{0.096}) *** & (\num{0.034}) *** & (\num{0.079}) *** & (\num{0.054}) & (\num{0.046}) *** & (\num{0.083}) ** \\
+Area: Town & \num{0.186} &  & \num{-0.224} & \num{0.156} &  &  &  & \num{0.007} \\
+& (\num{0.088}) * &  & (\num{0.192}) & (\num{0.107}) &  &  &  & (\num{0.059}) \\
+Area: City/Large City & \num{0.172} &  & \num{-0.177} & \num{0.241} &  &  &  & \num{0.033} \\
+& (\num{0.083}) * &  & (\num{0.148}) & (\num{0.093}) ** &  &  &  & (\num{0.063}) \\
+Class size & \num{-0.034} & \num{-0.022} & \num{-0.046} & \num{-0.001} & \num{0.085} & \num{0.165} & \num{-0.033} & \num{0.011} \\
+& (\num{0.045}) & (\num{0.083}) & (\num{0.131}) & (\num{0.040}) & (\num{0.017}) *** & (\num{0.073}) * & (\num{0.057}) & (\num{0.014}) \\
+Class size (squared) & \num{0.001} & \num{0.001} & \num{0.001} & \num{-0.000} & \num{-0.001} & \num{-0.003} & \num{0.001} & \num{-0.000} \\
+& (\num{0.001}) & (\num{0.002}) & (\num{0.003}) & (\num{0.001}) & (\num{0.000}) *** & (\num{0.001}) * & (\num{0.001}) & (\num{0.000}) \\
+Student–teacher ratio & \num{-0.011} & \num{0.001} & \num{-0.001} & \num{-0.005} & \num{-0.003} & \num{0.035} &  & \num{-0.004} \\
+& (\num{0.004}) ** & (\num{0.004}) & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.030}) &  & (\num{0.001}) *** \\
+Teachers with Master's (\%) & \num{0.071} & \num{-0.021} & \num{-0.019} & \num{0.126} & \num{-0.268} & \num{0.051} &  & \num{0.745} \\
+& (\num{0.065}) & (\num{0.050}) & (\num{0.142}) & (\num{0.068}) + & (\num{0.181}) & (\num{0.316}) &  & (\num{0.136}) *** \\
+Poor School Infrastructure & \num{-0.101} & \num{-0.080} & \num{0.070} & \num{0.095} & \num{-0.069} & \num{0.132} & \num{0.239} & \num{0.041} \\
+& (\num{0.101}) & (\num{0.127}) & (\num{0.292}) & (\num{0.119}) & (\num{0.081}) & (\num{0.204}) & (\num{0.215}) & (\num{0.050}) \\
+Task performance & \num{0.059} & \num{0.058} & \num{0.072} & \num{0.045} & \num{0.033} & \num{0.034} & \num{0.035} & \num{0.073} \\
+& (\num{0.011}) *** & (\num{0.017}) *** & (\num{0.021}) *** & (\num{0.012}) *** & (\num{0.006}) *** & (\num{0.019}) + & (\num{0.013}) ** & (\num{0.008}) *** \\
+Average school SES & \num{0.683} & \num{0.674} & \num{0.620} & \num{0.521} & \num{0.621} & \num{0.703} & \num{0.457} & \num{0.316} \\
+& (\num{0.105}) *** & (\num{0.123}) *** & (\num{0.275}) * & (\num{0.102}) *** & (\num{0.039}) *** & (\num{0.090}) *** & (\num{0.128}) *** & (\num{0.043}) *** \\
+Private school &  &  &  &  & \num{-0.075} &  & \num{0.226} & \num{0.275} \\
+&  &  &  &  & (\num{0.062}) &  & (\num{0.224}) & (\num{0.074}) *** \\
+Num.Obs. & \num{4543} & \num{2323} & \num{1417} & \num{3751} & \num{11372} & \num{1853} & \num{3268} & \num{5515} \\
+R2 Marg. & \num{0.181} & \num{0.112} & \num{0.116} & \num{0.131} & \num{0.387} & \num{0.323} & \num{0.294} & \num{0.366} \\
+R2 Cond. &  &  &  &  &  &  &  & \num{0.489} \\
+\end{talltblr}
+\end{table}
+
+\subsection{Mixed-effects regression models of learning gains by
+socio-economic status of students per school, the models with random
+slope terms}\label{sec-app7}
+
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+entry=none,label=none,
+note{}={  },
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-9}{solid, black, 0.05em},
+hline{32}={1-9}{solid, black, 0.05em},
+hline{1}={1-9}{solid, black, 0.1em},
+hline{34}={1-9}{solid, black, 0.1em},
+column{2-9}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Russia & Moscow City & Moscow Region & Tatarstan & BSJZ & Hong Kong & Macao & Brazil \\
+(Intercept) & \num{-2.513} & \num{-2.340} & \num{-3.823} & \num{-3.095} & \num{-4.329} & \num{-3.382} & \num{-2.616} & \num{-4.360} \\
+& (\num{0.531}) *** & (\num{1.265}) + & (\num{1.585}) * & (\num{0.543}) *** & (\num{0.414}) *** & (\num{1.028}) ** & (\num{0.774}) *** & (\num{0.265}) *** \\
+School year & \num{0.271} & \num{0.345} & \num{0.384} & \num{0.274} & \num{0.336} & \num{0.223} & \num{0.341} & \num{0.343} \\
+& (\num{0.029}) *** & (\num{0.039}) *** & (\num{0.064}) *** & (\num{0.058}) *** & (\num{0.022}) *** & (\num{0.035}) *** & (\num{0.024}) *** & (\num{0.021}) *** \\
+Sex: Male & \num{-0.168} & \num{-0.131} & \num{-0.246} & \num{-0.207} & \num{-0.066} & \num{-0.121} & \num{-0.034} & \num{-0.090} \\
+& (\num{0.020}) *** & (\num{0.030}) *** & (\num{0.040}) *** & (\num{0.023}) *** & (\num{0.011}) *** & (\num{0.038}) ** & (\num{0.027}) & (\num{0.018}) *** \\
+SES: Middle 50\% & \num{0.158} & \num{0.261} & \num{0.143} & \num{0.172} & \num{0.096} & \num{-0.025} & \num{0.048} & \num{0.117} \\
+& (\num{0.023}) *** & (\num{0.033}) *** & (\num{0.044}) ** & (\num{0.025}) *** & (\num{0.013}) *** & (\num{0.040}) & (\num{0.026}) + & (\num{0.021}) *** \\
+SES: Top 10\% & \num{0.206} & \num{0.213} & \num{0.199} & \num{0.106} & \num{0.206} & \num{-0.008} & \num{0.089} & \num{0.180} \\
+& (\num{0.040}) *** & (\num{0.056}) *** & (\num{0.074}) ** & (\num{0.045}) * & (\num{0.023}) *** & (\num{0.065}) & (\num{0.045}) + & (\num{0.037}) *** \\
+Language minority & \num{-0.286} & \num{-0.466} & \num{-0.424} & \num{-0.128} & \num{-0.478} & \num{0.002} & \num{-0.606} & \num{-0.219} \\
+& (\num{0.047}) *** & (\num{0.081}) *** & (\num{0.097}) *** & (\num{0.034}) *** & (\num{0.079}) *** & (\num{0.056}) & (\num{0.045}) *** & (\num{0.083}) ** \\
+Area: Town & \num{0.135} &  & \num{-0.286} & \num{0.129} &  &  &  & \num{0.072} \\
+& (\num{0.091}) &  & (\num{0.192}) & (\num{0.108}) &  &  &  & (\num{0.060}) \\
+Area: City/Large City & \num{0.139} &  & \num{-0.159} & \num{0.233} &  &  &  & \num{0.131} \\
+& (\num{0.084}) + &  & (\num{0.151}) & (\num{0.093}) * &  &  &  & (\num{0.062}) * \\
+Class size & \num{0.005} & \num{-0.051} & \num{0.022} & \num{0.038} & \num{0.084} & \num{0.090} & \num{-0.051} & \num{0.015} \\
+& (\num{0.046}) & (\num{0.094}) & (\num{0.129}) & (\num{0.040}) & (\num{0.019}) *** & (\num{0.077}) & (\num{0.057}) & (\num{0.014}) \\
+Class size (squared) & \num{-0.000} & \num{0.001} & \num{-0.000} & \num{-0.001} & \num{-0.001} & \num{-0.002} & \num{0.001} & \num{-0.000} \\
+& (\num{0.001}) & (\num{0.002}) & (\num{0.003}) & (\num{0.001}) & (\num{0.000}) *** & (\num{0.001}) & (\num{0.001}) & (\num{0.000}) \\
+Student–teacher ratio & \num{-0.009} & \num{0.001} & \num{-0.001} & \num{-0.004} & \num{-0.005} & \num{0.035} &  & \num{-0.005} \\
+& (\num{0.004}) * & (\num{0.005}) & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.035}) &  & (\num{0.001}) *** \\
+Teachers with Master's (\%) & \num{0.060} & \num{-0.032} & \num{0.001} & \num{0.131} & \num{0.137} & \num{0.103} &  & \num{0.769} \\
+& (\num{0.065}) & (\num{0.057}) & (\num{0.150}) & (\num{0.068}) + & (\num{0.203}) & (\num{0.344}) &  & (\num{0.139}) *** \\
+Poor School Infrastructure & \num{-0.099} & \num{-0.054} & \num{0.075} & \num{0.073} & \num{-0.076} & \num{0.091} & \num{0.168} & \num{-0.012} \\
+& (\num{0.102}) & (\num{0.144}) & (\num{0.301}) & (\num{0.119}) & (\num{0.091}) & (\num{0.223}) & (\num{0.217}) & (\num{0.051}) \\
+Task performance & \num{0.060} & \num{0.059} & \num{0.070} & \num{0.043} & \num{0.033} & \num{0.034} & \num{0.034} & \num{0.073} \\
+& (\num{0.011}) *** & (\num{0.017}) *** & (\num{0.021}) *** & (\num{0.012}) *** & (\num{0.006}) *** & (\num{0.019}) + & (\num{0.013}) ** & (\num{0.009}) *** \\
+Private school &  &  &  &  & \num{-0.031} &  & \num{0.226} & \num{0.337} \\
+&  &  &  &  & (\num{0.071}) &  & (\num{0.234}) & (\num{0.078}) *** \\
+Num.Obs. & \num{4543} & \num{2323} & \num{1417} & \num{3751} & \num{11372} & \num{1853} & \num{3268} & \num{5515} \\
+R2 Marg. & \num{0.097} & \num{0.113} & \num{0.119} & \num{0.100} & \num{0.177} & \num{0.087} & \num{0.283} & \num{0.323} \\
+\end{talltblr}
+\end{table}
+
+
+
+
+\end{document}
