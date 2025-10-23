@@ -105,6 +105,11 @@ _site/
 # !04_manuscript/*.pdf
 # !05_presentation/*.pptx
 
+# IMPORTANT: Allow docs folder for GitHub Pages deployment
+!docs/*.html
+!docs/*.css
+!docs/index.html
+
 
 # LaTeX
 # -----
@@ -180,7 +185,6 @@ secrets.json
 /out/
 
 # Documentation builds
-/docs/_build/
 /site/
 
 # Project-Specific
@@ -201,3 +205,8 @@ secrets.json
 *.tar.gz
 *.rar
 *.7z
+
+# Un-ignore the rds files in 01_data if needed
+!01_data/rds_converted/*.rds
+
+01_data/rds_converted/pisa_2018_students.rds
