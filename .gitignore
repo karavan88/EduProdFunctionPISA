@@ -1,3 +1,31 @@
+# =============================================================================
+# Repository .gitignore
+# =============================================================================
+
+# Operating System Files
+# ----------------------
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# R and RStudio
+# --------------
 # History files
 .Rhistory
 .Rapp.history
@@ -20,30 +48,156 @@
 
 # RStudio files
 .Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
-*_cache/
-/cache/
-
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
+*.Rproj
 
 # R Environment Variables
 .Renviron
+# Don't ignore .Rprofile as it's needed for renv activation
+# .Rprofile
 
-# pkgdown site
-docs/
+# renv (R environment management)
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/staging/
+# Keep renv.lock and renv/activate.R for reproducibility
 
-# translation temp files
-po/*~
+# R package development
+man/
+NAMESPACE
+*.Rcheck/
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token
+.httr-oauth
 
 # RStudio Connect folder
 rsconnect/
+
+# Quarto and Markdown
+# -------------------
+# Quarto render output
+/_site/
+/.quarto/
+_site/
+.quarto/
+
+# Quarto cache and freeze
+*_cache/
+*_files/
+/_freeze/
+/cache/
+
+# Markdown temporary files
+*.utf8.md
+*.knit.md
+*.markdown
+
+# Rendered outputs (adjust based on your workflow)
+*.html
+*.pdf
+*.docx
+*.pptx
+# Uncomment if you want to track rendered outputs:
+# !04_manuscript/*.pdf
+# !05_presentation/*.pptx
+
+
+# LaTeX
+# -----
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.idx
+*.ind
+*.ilg
+*.bcf
+*.run.xml
+
+# Data Files (Sensitive/Large)
+# ----------------------------
+# Large datasets (uncomment as needed)
+# *.csv
+*.xlsx
+*.xls
+*.dta
+*.sav
+*.SAV
+*.rds
+
+# Sensitive data
+**/sensitive/
+**/confidential/
+**/private/
+*.key
+*.pem
+config.ini
+secrets.json
+
+# Temporary and Log Files
+# ----------------------
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+.#*
+
+# IDE and Editor Files
+# -------------------
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+# Output Directories
+# ------------------
+# Build outputs
+/build/
+/dist/
+/out/
+
+# Documentation builds
+/docs/_build/
+/site/
+
+# Project-Specific
+# ----------------
+# Custom output directories (adjust as needed)
+/03_output/temp/
+/03_output/cache/
+/03_output/draft/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
