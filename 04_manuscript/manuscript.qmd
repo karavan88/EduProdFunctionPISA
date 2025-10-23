@@ -47,7 +47,7 @@ path = "/Users/karavan88/Documents/GitHub/EduProdFunctionPISA"
 ```{r source files, include=FALSE}
 
 source(file.path(rCodes, "02_descriptive.R"))
-source(file.path(rCodes, "03.1_model.R"))
+source(file.path(rCodes, "03_model.R"))
 
 
 ```

@@ -15,20 +15,10 @@ cat("📂 SECTION 1: DATA LOADING\n")
 cat("Loading PISA 2018 datasets from RDS files...\n\n")
 
 # Load main datasets
-cat("   📊 Loading PISA 2018 global datasets...\n")
 pisa_2018_schools <- readRDS(file.path(inputData, "pisa_2018_schools.rds"))
-cat("      ✅ PISA 2018 schools loaded -", nrow(pisa_2018_schools), "schools\n")
-
 pisa_2018_students <- readRDS(file.path(inputData, "pisa_2018_students_selected.rds"))
-cat("      ✅ PISA 2018 students loaded -", nrow(pisa_2018_students), "students\n")
-
-# Load Moscow-specific datasets
-cat("   🏛️  Loading Moscow-specific datasets...\n")
 mow_2018_schools <- readRDS(file.path(inputData, "pisa_2018_moscow_schools.rds"))
-cat("      ✅ Moscow schools loaded -", nrow(mow_2018_schools), "schools\n")
-
 mow_2018_students <- readRDS(file.path(inputData, "pisa_2018_moscow_students.rds"))
-cat("      ✅ Moscow students loaded -", nrow(mow_2018_students), "students\n")
 
 cat("\n   📋 Data loading summary:\n")
 cat("      • Total global schools:", nrow(pisa_2018_schools), "\n")
@@ -52,21 +42,15 @@ country_names <- c("Brazil",
                    "Russian Federation"
 )
 
-cat("   🌍 Target countries/regions configured:\n")
-for(i in seq_along(country_names)) {
-  cat("      ", i, ".", country_names[i], "\n")
-}
 
 # Vector of variables to join datasets
 join_vars = c("CNT", "CNTRYID", "CNTSCHID", "CYC", "NatCen", "STRATUM", "SUBNATIO")
-cat("\n   🔗 Join variables defined:", length(join_vars), "variables\n")
 
 # Vector of student variables to be selected
 student_vars = c("CNTSTUID", 	"ST001D01T", "ST003D02T", 
                  "ST003D03T", "ST004D01T", "ST022Q01TA", "ST126Q01TA",
                  "AGE", "DURECEC",  "WORKMAST", "COGFLEX", "ST184Q01HA",
                  "REPEAT", "BSMJ", "TMINS", "ESCS", "W_FSTUWT")
-cat("   👤 Student variables selected:", length(student_vars), "variables\n")
 
 # Vector of school variables to be selected
 school_vars = c("SC001Q01TA", "SC013Q01TA",
@@ -75,7 +59,6 @@ school_vars = c("SC001Q01TA", "SC013Q01TA",
                 "PROATCE", "PROAT5AB", "PROAT5AM", "PROAT6", #teacher qualifications 
                 "CLSIZE", "CREACTIV", "EDUSHORT", "STAFFSHORT", 
                 "SC017Q08NA")
-cat("   🏫 School variables selected:", length(school_vars), "variables\n")
 
 cat("\n✅ SECTION 2: CONFIGURATION COMPLETE\n\n")
 
@@ -83,14 +66,12 @@ cat("\n✅ SECTION 2: CONFIGURATION COMPLETE\n\n")
 cat("🔄 SECTION 3: DATA PROCESSING & TRANSFORMATION\n")
 
 ### Process Moscow datasets first
-cat("   🏛️  Processing Moscow-specific data...\n")
+
 student_moscow <- 
   mow_2018_students %>%
   select(all_of(join_vars), all_of(student_vars), matches("^PV.*(READ|MATH|SCIE)")) %>%
   mutate(CNT = as_factor(CNT),
          CNTRYID = as_factor(CNTRYID)) 
-
-cat("      ✅ Moscow student data processed -", nrow(student_moscow), "records\n")
 
 school_moscow <-
   mow_2018_schools %>%
@@ -98,10 +79,8 @@ school_moscow <-
   mutate(CNT = as_factor(CNT),
          CNTRYID = as_factor(CNTRYID)) 
 
-cat("      ✅ Moscow school data processed -", nrow(school_moscow), "records\n")
 
 # Process and merge student files
-cat("   👥 Processing and merging student datasets...\n")
 student_brc <- 
   pisa_2018_students %>%
   select(all_of(join_vars), all_of(student_vars), matches("^PV.*(READ|MAT|SCIE)")) %>%
@@ -134,6 +113,7 @@ student_brc <-
 
 cat("      ✅ Student data merged and processed -", nrow(student_brc), "students\n")
 cat("      📊 Countries in student dataset:\n")
+
 student_counts <- student_brc %>% count(CNT, sort = TRUE)
 for(i in 1:nrow(student_counts)) {
   cat("         •", student_counts$CNT[i], "-", student_counts$n[i], "students\n")
@@ -238,7 +218,8 @@ cat("      🎯 Analysis variables:", ncol(model_data), "\n")
 
 # Data quality checks
 cat("\n   🔍 Data quality assessment:\n")
-infrastructure_summary <- model_data %>% 
+infrastructure_summary <- 
+  model_data %>% 
   group_by(CNT) %>% 
   summarise(
     mean_infrastr = mean(sch_infrastr, na.rm = TRUE),
@@ -253,7 +234,8 @@ for(i in 1:nrow(infrastructure_summary)) {
       "- Mean:", round(infrastructure_summary$mean_infrastr[i], 3), "\n")
 }
 
-teacher_summary <- model_data %>% 
+teacher_summary <- 
+  model_data %>% 
   group_by(CNT) %>% 
   summarise(
     mean_teacher = mean(PROAT5AM, na.rm = TRUE),
@@ -280,13 +262,8 @@ cat("\n✅ SECTION 4: MODEL DATASET COMPLETE\n\n")
 cat("💾 SECTION 5: DATA EXPORT\n")
 cat("   📁 Saving processed datasets to output directory...\n")
 
-# write the dataset for the study in the repository
-saveRDS(brc, file.path(output, "merged_data.rds"))
-cat("      ✅ Full merged dataset saved:", file.path(output, "merged_data.rds"), "\n")
-cat("         • Observations:", nrow(brc), "\n")
-cat("         • Variables:", ncol(brc), "\n")
 
-saveRDS(model_data, file.path(output, "model_data.rds"))
+saveRDS(model_data, file.path(inputData, "model_data.rds"))
 cat("      ✅ Model dataset saved:", file.path(output, "model_data.rds"), "\n")
 cat("         • Observations:", nrow(model_data), "\n")
 cat("         • Variables:", ncol(model_data), "\n")
@@ -299,5 +276,5 @@ cat("📅 Finished:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
 cat("📊 Final outputs:\n")
 cat("   • Full dataset:", nrow(brc), "observations across", length(unique(brc$CNT)), "countries/regions\n")
 cat("   • Model dataset:", nrow(model_data), "analysis-ready observations\n")
-cat("   • Datasets saved to:", output, "\n")
+cat("   • Datasets saved to:", inputData, "\n")
 cat(rep("=", 70), "\n\n")

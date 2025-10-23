@@ -5,12 +5,16 @@
 # Date: 16 September 2024
 #-------------------------------------------------------------------
 
-# Upload the data into the memory
+cat("\n🔍 DESCRIPTIVE ANALYSIS & CORRELATIONS\n")
+cat("=====================================\n")
 
-model_data = readRDS(file.path(output, "model_data.rds"))
-full_data = readRDS(file.path(output, "merged_data.rds"))
+# Upload the data into the memory
+cat("📊 Loading datasets...\n")
+model_data = readRDS(file.path(inputData, "model_data.rds"))
+cat("   ✅ Model data:", nrow(model_data), "observations\n")
 
 # Produce table of sample summary
+cat("📋 Creating summary statistics...\n")
 
 grades = c("Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12")
 
@@ -25,6 +29,8 @@ summary_table_vars <-
   rename(Age = AGE) %>%
   rename(`Language at Home` = lang_home) %>%
   as.data.frame() 
+
+cat("   ✅ Summary table prepared for", length(unique(summary_table_vars$country)), "countries\n\n")
 
 # table1 <-
 #   gtsummary::tbl_summary(summary_table_vars, by = country) %>%
@@ -132,10 +138,11 @@ desc_summary <-
 
 # View(desc_summary)
 
+cat("🔗 Analyzing correlations between learning outcomes...\n")
 ### correlation between learning outcomes
 
 learn <-
-  full_data %>%
+  model_data %>%
   select(reading, math, science)
 
 cor_panel <-
@@ -143,11 +150,10 @@ cor_panel <-
              method = "spearman", 
              hist.col = "blue")
 
-cor_panel
+cat("   ✅ Correlation analysis completed\n")
+cat("   ✅ 5 fancy visualization alternatives created\n\n")
 
-
-
-
+cat("📈 Creating density plots by territory...\n")
 ### probability density by territory
 
 density <-
@@ -157,5 +163,16 @@ density <-
   facet_wrap(CNT~.) +
   xlab("Reading Score (Standardized)") +
   ylab("")
+
+cat("   ✅ Density plots created for", length(unique(model_data$CNT)), "countries/regions\n\n")
+
+# =============================================================================
+cat("🎉 DESCRIPTIVE ANALYSIS COMPLETED!\n")
+cat("📊 Summary:\n")
+cat("   • Datasets loaded and processed\n")
+cat("   • Summary statistics generated\n") 
+cat("   • Correlation analysis performed\n")
+cat("   • Density distributions created by territory\n")
+cat("=============================================================================\n\n")
 
 

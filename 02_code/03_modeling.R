@@ -5,10 +5,14 @@
 # Date: 16 September 2024
 #-------------------------------------------------------------------#
 
+cat("\n🎯 MULTILEVEL REGRESSION MODELING\n")
+cat("=================================\n")
+
 # Upload the data into the memory
+cat("📊 Loading and preparing modeling data...\n")
 
 model_data = 
-  readRDS(file.path(output, "model_data.rds")) %>%
+  readRDS(file.path(inputData, "model_data.rds")) %>%
   mutate(CNT = droplevels(factor(CNT))) %>%
   mutate(age_group = as.factor(AGE)) %>%
   # we need to group by CNT and divide ESCS for school by three groups - bottom 40%, middle 50%, top 10%
@@ -22,8 +26,13 @@ model_data =
   ungroup() %>%
   mutate(ESCS_sch_group = factor(ESCS_sch_group, levels = c("Bottom 40%", "Middle 50%", "Top 10%")))  
 
+cat("   ✅ Data prepared:", nrow(model_data), "observations\n")
+cat("   ✅ Countries:", length(unique(model_data$CNT)), "\n")
+cat("   ✅ Schools:", length(unique(model_data$CNTSCHID)), "\n\n")  
+
 # Baseline model but for each country (CNT) separately - use map or loop or apply
 
+cat("🏁 BASELINE MODEL: NULL MODEL WITH RANDOM INTERCEPT\n")
 #------ BASELINE MODEL: NULL MODEL WITH RANDOM INTERCEPT FOR SCHOOL ------ ####
 
 # Split data by country
@@ -56,6 +65,9 @@ icc_results <-
 
 # View(icc_results)
 
+cat("   ✅ Baseline models fitted for", length(unique(icc_results$country)), "countries\n")
+cat("   ✅ ICC analysis completed\n\n")
+
 # create a barchart
 icc_plot <- 
   ggplot(icc_results, aes(x = fct_reorder(country, ICC), y = ICC)) +
@@ -66,6 +78,7 @@ icc_plot <-
   theme_minimal()
 
 
+cat("📊 MODEL 1: FIXED EFFECTS WITH RANDOM INTERCEPT\n")
 #------ MODEL 1: FIXED EFFECTS WITH RANDOM INTERCEPT FOR SCHOOL ------ #####
 
 #create regression formulas for each country (RUS should exclude private school variable)
@@ -303,6 +316,12 @@ eyos_plot <-
   )
 
 
+  )
+
+cat("   ✅ Model 1 completed for all countries\n")
+cat("   ✅ EYOS coefficients extracted and visualized\n\n")
+
+cat("📈 MODEL 2: RANDOM INTERCEPT + RANDOM SLOPE FOR SES\n")
 #------ MODEL 2: FIXED EFFECTS WITH RANDOM INTERCEPT FOR SCHOOL AND RANDOM SLOPE FOR SES ------ #####
 
 # Update the formulas to include random slope for ESCS
@@ -435,6 +454,10 @@ reg_tables_m2 <-
                notes   = "  ",
                output = "tinytable") 
 
+cat("   ✅ Model 2 completed for all countries\n")
+cat("   ✅ Random slope effects analyzed\n\n")
+
+cat("🎯 MODEL 3: RANDOM INTERCEPT + RANDOM SLOPE FOR SCHOOL SES\n")
 #------ MODEL 3: FIXED EFFECTS WITH RANDOM INTERCEPT FOR SCHOOL AND RANDOM SLOPE FOR SCHOOL SES ------ #####
 
 # Update the formulas to include random slope for ESCS_sch_group (1 + Grade1 | ESCS_sch_group)
@@ -541,4 +564,19 @@ reg_tables_m3 <-
                coef_rename = rename_vector,
                notes   = "  ",
                output = "tinytable") 
+
+cat("   ✅ Model 3 completed for all countries\n")
+cat("   ✅ School SES random slope effects analyzed\n\n")
+
+# =============================================================================
+cat("🎉 MULTILEVEL MODELING COMPLETED!\n")
+cat("📊 Summary of Regression Analysis:\n")
+cat("   • Baseline Models (ICC): ", length(unique(icc_results$country)), "countries\n")
+cat("   • Model 1 (Fixed Effects): ", length(cnt_m1), "regression models\n")
+cat("   • Model 2 (Random SES Slope): ", length(cnt_m2), "regression models\n") 
+cat("   • Model 3 (Random School SES): ", length(cnt_m3), "regression models\n")
+cat("   • Total models fitted: ", length(cnt_baseline_model) + length(cnt_m1) + length(cnt_m2) + length(cnt_m3), "\n")
+cat("   • Visualizations created: ICC plot, EYOS plots, coefficient plots\n")
+cat("   • Model summaries generated for all specifications\n")
+cat("=============================================================================\n\n") 
 
