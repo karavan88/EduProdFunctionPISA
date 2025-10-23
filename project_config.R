@@ -89,23 +89,32 @@ cat("Loading all required packages for analysis...\n\n")
 # Define required packages by category
 required_packages <- list(
   
-  "Core Data Science" = c("tidyverse"), # includes "dplyr", "tibble", "ggplot2", "readr", "tidyr",  "stringr", "forcats", "lubridate", "purrr",
+  # Core Data Science & Import/Export
+  "Core Data Science" = c("tidyverse",    # Complete data science toolkit (dplyr, ggplot2, readr, etc.)
+                          "haven",        # SPSS, Stata, SAS data import
+                          "glue"),        # String interpolation
   
-  "Statistical Analysis" = c("lme4", "lmerTest", "lmtest",  
-                             "broom", "broom.mixed"),
+  # Statistical Modeling & Analysis  
+  "Statistical Modeling" = c("lme4",         # Linear mixed-effects models
+                             "lmerTest",     # Tests for mixed models
+                             "psych",        # Psychological research tools
+                             "performance"), # Model performance assessment
   
-  "Effects & Visualization" = c("ggeffects", "gridExtra", "sjPlot", "ggcorrplot", 
-                                "ggstats"),
+  # Data Visualization & Plotting
+  "Visualization" = c("ggeffects",    # Effects plotting for regression models
+                      "ggcorrplot",   # Correlation matrix visualization  
+                      "sjPlot",       # Statistical plots and tables
+                      "colorspace"),  # Color manipulation and palettes
   
-  "Data Import/Export" = c("haven", "readxl", "here"),
+  # Tables & Reporting
+  "Tables & Reporting" = c("gt",            # Grammar of tables
+                           "gtsummary",     # Summary tables
+                           "modelsummary",  # Model summary tables
+                           "broom",         # Tidy model outputs
+                           "broom.mixed"),  # Tidy mixed model outputs
   
-  "Tables & Output" = c("gtsummary", "modelsummary", "tinytable", 
-                        "kableExtra", "gt"),
-  
-  "Statistical Packages" = c("easystats", "bayestestR", "performance", "parameters", 
-                             "effectsize", "correlation", "insight"),
-  
-  "Utilities" = c("glue", "conflicted")
+  # Utilities & Workflow
+  "Utilities" = c("conflicted")       # Namespace conflict resolution
 )
 
 # Function to safely load packages with informative output
