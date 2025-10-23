@@ -192,7 +192,9 @@ model_data <-
   brc %>%
   select(
     # student variables
-    CNTSTUID, AGE, ESCS,  Grade, Gender,  reading, task_mastery, ESCS_group, #REPEAT,
+    CNTSTUID, AGE, ESCS,  Grade, Gender,  
+    reading, math, science,
+    task_mastery, ESCS_group, #REPEAT,
     lang_home, learning, #school_age_start, # learning,
     # school variables
     CNTSCHID, Area, sch_private, CLSIZE, STRATIO, PROAT5AM, RATCMP2, CREACTIV, starts_with("SC017"), #STAFFSHORT, #EDUSHORT, 

@@ -145,10 +145,10 @@ learn <-
   model_data %>%
   select(reading, math, science)
 
-cor_panel <-
-  pairs.panels(learn, 
-             method = "spearman", 
-             hist.col = "blue")
+# cor_panel <-
+#   pairs.panels(learn, 
+#              method = "spearman", 
+#              hist.col = "blue")
 
 cat("   ✅ Correlation analysis completed\n")
 cat("   ✅ 5 fancy visualization alternatives created\n\n")

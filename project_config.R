@@ -193,4 +193,15 @@ if (length(failed_packages) == 0) {
   cat("🔧 Please install missing packages before running analysis.\n")
 }
 cat("✅ Setup completed:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
+
+# LOAD QUARTO UTILITIES
+cat("📝 Loading Quarto rendering utilities...\n")
+quarto_utils_path <- file.path(rCodes, "00_quarto_utils.R")
+if (file.exists(quarto_utils_path)) {
+  source(quarto_utils_path)
+  cat("   ✅ Quarto utilities loaded successfully\n")
+} else {
+  cat("   ⚠️  Quarto utilities file not found:", quarto_utils_path, "\n")
+}
+
 cat(rep("=", 70), "\n\n")

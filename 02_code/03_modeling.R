@@ -316,8 +316,6 @@ eyos_plot <-
   )
 
 
-  )
-
 cat("   ✅ Model 1 completed for all countries\n")
 cat("   ✅ EYOS coefficients extracted and visualized\n\n")
 
@@ -442,7 +440,7 @@ bar_plot_m2 <-
   )
 
 # Display the bar chart
-print(bar_plot_m2)
+# print(bar_plot_m2)
 
 # check the summary of one of the models
 reg_tables_m2 <-
