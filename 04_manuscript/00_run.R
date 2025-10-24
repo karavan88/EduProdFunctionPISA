@@ -8,21 +8,10 @@
 cat("\n📚 MANUSCRIPT RENDERING PIPELINE\n")
 cat("===============================\n\n")
 
-# Set working directory to project root
-setwd("..")
-
-# Source the configuration to load Quarto utilities
-source("project_config.R")
-
-# Define paths
+# Define paths relative to current working directory (project root)
 manuscript_file <- "04_manuscript/manuscript.qmd"
 docs_folder <- "docs"
 
-# Create docs folder if it doesn't exist (for GitHub Pages)
-if (!dir.exists(docs_folder)) {
-  dir.create(docs_folder, recursive = TRUE)
-  cat("📁 Created docs folder for GitHub Pages\n")
-}
 
 cat("🎯 Starting manuscript rendering...\n\n")
 
@@ -75,15 +64,22 @@ cat("🌐 RENDERING 3: HTML to docs folder (GitHub Pages)\n")
 cat("==================================================\n")
 
 tryCatch({
-  system(paste("quarto render", shQuote(manuscript_file), "--to html", 
-               "--output-dir", shQuote(docs_folder)), intern = FALSE)
+  # Render HTML to manuscript folder first
+  system(paste("quarto render", shQuote(manuscript_file), "--to html"), intern = FALSE)
   
+  # Check if HTML was created in manuscript folder and move it to docs
+  manuscript_html <- "04_manuscript/manuscript.html"
   html_path <- file.path(docs_folder, "manuscript.html")
   
-  # Also check if it was created in manuscript folder and move it
-  manuscript_html <- "04_manuscript/manuscript.html"
-  if (file.exists(manuscript_html) && !file.exists(html_path)) {
-    file.copy(manuscript_html, html_path)
+  # Ensure docs folder exists
+  if (!dir.exists(docs_folder)) {
+    dir.create(docs_folder, recursive = TRUE)
+    cat("📁 Created docs folder\n")
+  }
+  
+  if (file.exists(manuscript_html)) {
+    # Move the HTML file to docs folder
+    file.copy(manuscript_html, html_path, overwrite = TRUE)
     file.remove(manuscript_html)
     cat("📁 Moved HTML file to docs folder\n")
   }

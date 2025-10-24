@@ -210,3 +210,7 @@ secrets.json
 !01_data/rds_converted/*.rds
 
 01_data/rds_converted/pisa_2018_students.rds
+
+# Un-ignore the rendered manuscript PDF and DOCX
+!04_manuscript/manuscript.pdf
+!04_manuscript/manuscript.docx

@@ -2,9 +2,9 @@
 title: "Estimating Cognitive Skill Formation in Brazil, China, and Russia: An Education Production Function Approach"
 author:
   - name: Garen Avanesian
-    affiliation: Southern Federal University
+    affiliation: Department of Human Resources Management, Southern Federal University, Rostov-on-Don, Russia
     email: avanesian@sfedu.ru
-date: 09/17/2024
+date: 10/24/2024
 date-format: long
 format: 
   html:
@@ -38,8 +38,12 @@ format:
     number-sections: true
     colorlinks: true
     colorurl: true
-    toc: true
+    toc: false
     toc-depth: 3
+    header-includes: |
+      \usepackage{tabularray}
+      \UseTblrLibrary{booktabs}
+      \usepackage{siunitx}
 editor: visual
 bibliography: references.bib
 biblio-style: bwl-FU
@@ -59,16 +63,29 @@ This study examines cognitive skill formation in secondary education across Braz
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
-```{r wd set up, include=FALSE}
-# set up the path
-path = "/Users/karavan88/Documents/GitHub/EduProdFunctionPISA"
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| output: false  
+#| results: 'hide'
 
-```
+# Set working directory and paths for the analysis repo
+projectFolder <- "/Users/karavan88/Documents/GitHub/EduProdFunctionPISA"
 
-```{r source files, include=FALSE}
+# Change to the analysis repo directory temporarily
+setwd(projectFolder)
 
-source(file.path(rCodes, "02_descriptive.R"))
-source(file.path(rCodes, "03_modeling.R"))
+# Now source the project config from within the repo
+source("project_config.R")
+
+# Source the analysis scripts (suppress all output)
+invisible(capture.output({
+    source(file.path(rCodes, "02_descriptive.R"))
+    source(file.path(rCodes, "03_modeling.R"))
+}))
+
+
 
 
 ```
@@ -290,7 +307,11 @@ print(bar_plot_m2)
 
 Just like socio-economic background of a student has impact on both their learning volumes overall and their learning gains, so do peer effects expressed in the socio-economic environment in schools. The fact that schools with the higher share of wealthier students produce more cognitive skills even with the same curricula makes it important to explore the differences in learning gains associated with the concentration of poorer or wealthier students in certain schools. Do children who study in schools where the majority of students come from economically disadvantaged families learn less per academic year than those who study in wealthier schools? In other words, at this stage the research explores the question of whether concentration of students with certain socio-economic backgrounds results in differences in learning gains per academic year. The results of the third block of mixed-effects models are shown on @fig-m3 (full models are referenced in @sec-app7).
 
-The findings of the third model are substantially more consistent across territories, confirming that the more wealthy students a school has, the higher the learning gains per academic year.
+The findings of the third model are substantially more consistent across territories, confirming that the more wealthy students a school has, the higher the learning gains per academic year. The highest gap os observed in Tatarstan, where students in top-decile SES schools gain approximately 0.36 SD per year compared to 0.22 SD in bottom 40% schools. Similar upward gradients are observed in other territories, with Tatarstan followed by Moscow Region (0.43 SD in top 10% of schools by student socio-economic composition versus 0.22 SD in bottom 40% of schools ) and Hong Kong. Overall the output of the models suggests that peer effects act as a powerful amplifier of learning advantages.
+
+An interesting exception emerges in Moscow City, where the pattern is reversed. Students in low-SES schools exhibit marginally higher learning gains than their peers in wealthier schools. This does not imply that disadvantaged students outperform advantaged peers overall. While wealthier schools still maintain higher absolute learning levels, marginal learning gains per year are steeper at the lower end of the SES distribution. One plausible interpretation is a ceiling effect: given the already high skill levels in elite Moscow schools, additional annual gains may be smaller, while students in less advantaged schools have more room for improvement.
+
+This result aligns with the broader literature on diminishing marginal returns to learning at higher performance levels and suggests that interventions targeting disadvantaged schools in Moscow may yield particularly high marginal returns in learning gains.
 
 ```{r}
 #| label: fig-m3
