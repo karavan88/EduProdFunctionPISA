@@ -10,18 +10,18 @@ format:
     slide-number: true
     chalkboard: true
     preview-links: auto
-    logo: ""
     footer: "Education Production Function | PISA 2018 Analysis"
     incremental: false
     transition: slide
     background-transition: fade
     highlight-style: github
-    code-fold: true
     scrollable: true
     controls: true
     progress: true
     fig-width: 10
     fig-height: 6
+    embed-resources: false
+    self-contained: false
 editor: visual
 bibliography: ../04_manuscript/references.bib
 csl: ../04_manuscript/apa-with-abstract.csl
