@@ -214,3 +214,6 @@ secrets.json
 # Un-ignore the rendered manuscript PDF and DOCX
 !04_manuscript/manuscript.pdf
 !04_manuscript/manuscript.docx
+
+# make exception to everything in the doc folder
+!docs/**
