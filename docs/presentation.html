@@ -344,7 +344,7 @@ Garen Avanesian
 </div>
 
 </section>
-<section id="research-motivation" class="slide level2 center">
+<section id="research-motivation" class="slide level2 smaller">
 <h2>Research Motivation</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -358,23 +358,25 @@ Garen Avanesian
 <p><strong>SDG 4.1.1c</strong></p>
 <p><em>Ensure all students acquire knowledge and skills for sustainable development</em></p>
 <ul>
-<li>Reading (literacy)</li>
-<li>Mathematical competencies</li>
+<li>Reading skills</li>
+<li>Math skills</li>
 </ul>
 </div></div>
-<aside class="notes">
-<p>We’re addressing a fundamental question in education economics: not just how long students stay in school, but what they actually learn during that time.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>We’re addressing a fundamental question in education economics: not just how long students stay in school, but <strong>what they actually learn during that time</strong>.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="context-data" class="slide level2 smaller">
 <h2>Context &amp; Data</h2>
@@ -383,7 +385,7 @@ Garen Avanesian
 <p><strong>PISA 2018 Assessment</strong></p>
 <ul>
 <li>15-year-old students</li>
-<li>Reading, Math, Science</li>
+<li>Reading score</li>
 <li>Student &amp; school questionnaires</li>
 </ul>
 <p><strong>Sample Coverage</strong></p>
@@ -418,6 +420,7 @@ Garen Avanesian
 <p><strong>Secondary Question</strong></p>
 </div>
 <div class="callout-content">
+<p><strong>How much of academic achievement can be attributed to school-level factors?</strong></p>
 <p><strong>Are learning gains heterogeneous with respect to:</strong></p>
 <ul>
 <li>Students’ socio-economic status?</li>
@@ -436,13 +439,13 @@ Garen Avanesian
 <img data-src="presentation_files/figure-revealjs/fig-pres-gross-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">
 Figure&nbsp;1: Average Reading Scores by Country/Territory
 </p></section>
-<section id="methodology-education-production-function" class="slide level2">
+<section id="methodology-education-production-function" class="slide level2 smaller">
 <h2>Methodology: Education Production Function</h2>
 <div>
 <ul>
-<li class="fragment"><strong>Value-added approach</strong>: Grade progression as proxy for annual learning</li>
-<li class="fragment"><strong>Mixed-effects model</strong>: Random intercepts for schools and age groups</li>
-<li class="fragment"><strong>Controls</strong>: Individual, household, and school-level factors</li>
+<li class="fragment"><strong>Value-added approach</strong>: Grade progression as proxy for annual learning using cross-sectional dataset</li>
+<li class="fragment"><strong>Mixed-effects (multilevel) model</strong>: Random intercepts for schools and age groups; random slopes for heterogeneity of learning gains by individual and school SES</li>
+<li class="fragment"><strong>Controls</strong>: Individual, household, and school-level factors + peer effects!</li>
 <li class="fragment"><strong>Separate models</strong> for each territory (8 samples)</li>
 </ul>
 </div>
@@ -456,7 +459,11 @@ Figure&nbsp;1: Average Reading Scores by Country/Territory
 <p><strong>Key Innovation</strong></p>
 </div>
 <div class="callout-content">
-<p>Random effects control for endogeneity from age-grade variation and school clustering</p>
+<ul>
+<li>Students of different age in the same grade would demonstrate different effective progression depending on the start of schooling age</li>
+<li>Random intercept terms for age control for endogeneity from age-to-grade variation and allow for isolating the effect of one year of schooling on learning</li>
+<li>Random slope terms for individual and school SES percentile groups allow for assessing heterogeneity in learning gains</li>
+</ul>
 </div>
 </div>
 </div>
@@ -484,46 +491,54 @@ Figure&nbsp;3: Variance Explained by Schools (ICC)
 </ul>
 </div>
 </section>
-<section id="the-peer-effect-dominates" class="slide level2 smaller">
-<h2>The Peer Effect Dominates</h2>
+<section id="school-resources-show-mixed-results" class="slide level2 smaller">
+<h2>School Resources Show Mixed Results</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>School SES Composition</strong></p>
-<p>One SD increase in average school SES equals:</p>
-<ul>
-<li>🇭🇰 <strong>3.5 years</strong> of schooling (Hong Kong)</li>
-<li>🇷🇺 <strong>2.5 years</strong> (Moscow City)</li>
-<li>🇷🇺 <strong>2.0 years</strong> (Russia, Tatarstan)<br>
-</li>
-<li>🇧🇷 <strong>0.95 years</strong> (Brazil)</li>
-</ul>
+<p><strong>Significant Effects</strong></p>
+<p>✓ <strong>Teacher qualification</strong> (Brazil, Tatarstan)<br>
+- Brazil: 2.3 EYOS per 1% increase - Tatarstan: 0.5 EYOS</p>
+<p>✓ <strong>Urban location</strong> (Russia, Tatarstan)<br>
+- 0.6-1.0 EYOS advantage</p>
+<p>✓ <strong>Student-teacher ratio</strong> (Russia, Brazil)<br>
+- Negative effects when overcrowded</p>
 </div><div class="column" style="width:50%;">
-<div class="callout callout-warning callout-titled callout-style-default">
+<p><strong>Insignificant or Unclear</strong></p>
+<p>✗ School infrastructure (self-reported)</p>
+<p>✗ Teacher qualification in high-performing systems (ceiling effect?)</p>
+<p>✗ Class size (curvilinear relationship)</p>
+<p>✗ Private schools (only Brazil shows effect)</p>
+</div></div>
+</section>
+<section id="the-peer-effects-dominate" class="slide level2 smaller">
+<h2>The Peer Effects Dominate</h2>
+
+<img data-src="presentation_files/figure-revealjs/fig-pres-peers-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">
+Figure&nbsp;4: Schools SES composition effects (+1SD increase on EYOS)
+</p><p><strong>Policy implication</strong> - Even with the same curriculum, teachers, and resources, students in high-SES schools learn substantially more - Peer composition drives inequality</p>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Policy Implication</strong></p>
+<p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Even with same curriculum, teachers, and resources, students in high-SES schools learn substantially more</p>
-<p>→ <strong>Peer composition drives inequality</strong></p>
+<p><strong>Matthew Effect in education</strong>: advantage begets further advantage</p>
 </div>
 </div>
 </div>
-</div></div>
-<div class="fragment">
-<p>The “Matthew Effect” in education: advantage begets further advantage</p>
 </div>
 </section>
 <section id="non-cognitive-skills-matter" class="slide level2 smaller">
 <h2>Non-Cognitive Skills Matter</h2>
 
 <img data-src="presentation_files/figure-revealjs/fig-pres-eyos-task-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">
-Figure&nbsp;4: Effect of Task Mastery in Equivalent Years of Schooling
+Figure&nbsp;5: Effect of Task Mastery in Equivalent Years of Schooling
 </p><div class="fragment">
-<p>“<strong>Skills beget skills</strong>” - malleable trait with high returns for disadvantaged students</p>
+<p>“<strong>Skills beget skills</strong>” - malleable trait with high returns</p>
 </div>
 </section>
 <section id="gender-language-gaps-persist" class="slide level2 smaller">
@@ -561,35 +576,28 @@ Figure&nbsp;4: Effect of Task Mastery in Equivalent Years of Schooling
 </div>
 </div>
 </section>
-<section id="school-resources-show-mixed-results" class="slide level2 smaller">
-<h2>School Resources Show Mixed Results</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Significant Effects</strong></p>
-<p>✓ <strong>Teacher qualification</strong> (Brazil, Tatarstan)<br>
-- Brazil: 2.3 EYOS per 1% increase - Tatarstan: 0.5 EYOS</p>
-<p>✓ <strong>Urban location</strong> (Russia, Tatarstan)<br>
-- 0.6-1.0 EYOS advantage</p>
-<p>✓ <strong>Student-teacher ratio</strong> (Russia, Brazil)<br>
-- Negative effects when overcrowded</p>
-</div><div class="column" style="width:50%;">
-<p><strong>Insignificant or Unclear</strong></p>
-<p>✗ School infrastructure (self-reported)</p>
-<p>✗ Teacher qualification in high-SES areas (ceiling effect?)</p>
-<p>✗ Class size (curvilinear relationship)</p>
-<p>✗ Private schools (only Brazil shows effect)</p>
-</div></div>
-</section>
-<section id="ses-shapes-learning-differently" class="slide level2 smaller">
-<h2>SES Shapes Learning Differently</h2>
+<section id="learning-gains-by-individual-ses" class="slide level2 smaller">
+<h2>Learning Gains by Individual SES</h2>
 
 <img data-src="presentation_files/figure-revealjs/fig-pres-ses-gains-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">
-Figure&nbsp;5: Learning Gains by Family SES
+Figure&nbsp;6: Learning Gains by Family SES
 </p><div>
 <ul>
 <li class="fragment"><strong>Brazil</strong>: Wealthier students learn MORE per year (privilege compounds)</li>
 <li class="fragment"><strong>Russia, BSJZ</strong>: Poorer students learn MORE per year (catching up, but from lower base)</li>
 <li class="fragment"><strong>Hong Kong, Macao</strong>: No difference in learning rates (equity in gains)</li>
+</ul>
+</div>
+</section>
+<section id="learning-gains-by-school-ses" class="slide level2 smaller">
+<h2>Learning Gains by School SES</h2>
+
+<img data-src="presentation_files/figure-revealjs/fig-pres-sch-ses-gains-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">
+Figure&nbsp;7: Learning Gains by Family SES
+</p><div>
+<ul>
+<li class="fragment"><strong>Privelege compounds</strong>: Wealthier schools show higher learning gains</li>
+<li class="fragment"><strong>Exception</strong>: Moscow City - due to the ceiling effect and/or low institutional stratification?</li>
 </ul>
 </div>
 </section>
@@ -678,7 +686,7 @@ Figure&nbsp;5: Learning Gains by Family SES
 → Expand to more upper-middle income countries</p>
 </div>
 </section>
-<section id="conclusions" class="slide level2 center">
+<section id="conclusions" class="slide level2 smaller">
 <h2>Conclusions</h2>
 <div class="callout callout-tip no-icon callout-titled callout-style-default">
 <div class="callout-body">
