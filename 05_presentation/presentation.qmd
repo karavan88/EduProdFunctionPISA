@@ -54,7 +54,7 @@ invisible(capture.output({
 }))
 ```
 
-## Research Motivation {.center}
+## Research Motivation {.smaller}
 
 ::::: columns
 ::: {.column width="50%"}
@@ -70,14 +70,16 @@ invisible(capture.output({
 
 *Ensure all students acquire knowledge and skills for sustainable development*
 
--   Reading (literacy)
--   Mathematical competencies
+-   Reading skills
+-   Math skills
 :::
 :::::
 
-::: notes
-We're addressing a fundamental question in education economics: not just how long students stay in school, but what they actually learn during that time.
+:::: fragment
+::: callout-tip
+We're addressing a fundamental question in education economics: not just how long students stay in school, but **what they actually learn during that time**.
 :::
+::::
 
 ------------------------------------------------------------------------
 
@@ -88,7 +90,7 @@ We're addressing a fundamental question in education economics: not just how lon
 **PISA 2018 Assessment**
 
 -   15-year-old students
--   Reading, Math, Science
+-   Reading score 
 -   Student & school questionnaires
 
 **Sample Coverage**
@@ -124,6 +126,8 @@ We're addressing a fundamental question in education economics: not just how lon
 ::: {.callout-note icon="false"}
 ## Secondary Question
 
+**How much of academic achievement can be attributed to school-level factors?**
+
 **Are learning gains heterogeneous with respect to:**
 
 -   Students' socio-economic status?
@@ -133,7 +137,6 @@ We're addressing a fundamental question in education economics: not just how lon
 ::: fragment
 Focus on **net productivity** (learning gains per year) vs. **gross productivity** (total achievement levels)
 :::
-
 
 ## The Puzzle: Gross vs. Net Productivity
 
@@ -167,20 +170,21 @@ ggplot(gross_prod, aes(x = Territory, y = Total, fill = Territory)) +
 
 ------------------------------------------------------------------------
 
-## Methodology: Education Production Function
+## Methodology: Education Production Function {.smaller}
 
 ::: incremental
--   **Value-added approach**: Grade progression as proxy for annual learning
--   **Mixed-effects model**: Random intercepts for schools and age groups
--   **Controls**: Individual, household, and school-level factors
+-   **Value-added approach**: Grade progression as proxy for annual learning using cross-sectional dataset
+-   **Mixed-effects (multilevel) model**: Random intercepts for schools and age groups; random slopes for heterogeneity of learning gains by individual and school SES
+-   **Controls**: Individual, household, and school-level factors + peer effects!
 -   **Separate models** for each territory (8 samples)
 :::
 
 :::: fragment
 ::: callout-tip
 ## Key Innovation
-
-Random effects control for endogeneity from age-grade variation and school clustering
+-    Students of different age in the same grade would demonstrate different effective progression depending on the start of schooling age
+-    Random intercept terms for age control for endogeneity from age-to-grade variation and allow for isolating the effect of one year of schooling on learning
+-    Random slope terms for individual and school SES percentile groups allow for assessing heterogeneity in learning gains
 :::
 ::::
 
@@ -246,34 +250,56 @@ print(icc_plot)
 
 ------------------------------------------------------------------------
 
-## The Peer Effect Dominates {.smaller}
+## School Resources Show Mixed Results {.smaller}
 
-:::::: columns
+::::: columns
 ::: {.column width="50%"}
-**School SES Composition**
+**Significant Effects**
 
-One SD increase in average school SES equals:
+✓ **Teacher qualification** (Brazil, Tatarstan)\
+- Brazil: 2.3 EYOS per 1% increase - Tatarstan: 0.5 EYOS
 
--   🇭🇰 **3.5 years** of schooling (Hong Kong)
--   🇷🇺 **2.5 years** (Moscow City)
--   🇷🇺 **2.0 years** (Russia, Tatarstan)\
--   🇧🇷 **0.95 years** (Brazil)
+✓ **Urban location** (Russia, Tatarstan)\
+- 0.6-1.0 EYOS advantage
+
+✓ **Student-teacher ratio** (Russia, Brazil)\
+- Negative effects when overcrowded
 :::
 
-:::: {.column width="50%"}
-::: callout-warning
-## Policy Implication
+::: {.column width="50%"}
+**Insignificant or Unclear**
 
-Even with same curriculum, teachers, and resources, students in high-SES schools learn substantially more
+✗ School infrastructure (self-reported)
 
-→ **Peer composition drives inequality**
+✗ Teacher qualification in high-performing systems (ceiling effect?)
+
+✗ Class size (curvilinear relationship)
+
+✗ Private schools (only Brazil shows effect)
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## The Peer Effects Dominate {.smaller}
+
+```{r}
+#| label: fig-pres-peers
+#| fig-cap: "Schools SES composition effects (+1SD increase on EYOS)"
+#| fig-width: 10
+#| fig-height: 4.5
+
+print(peer_effects_plot)
+```
+**Policy implication**
+-   Even with the same curriculum, teachers, and resources, students in high-SES schools learn substantially more
+-   Peer composition drives inequality
+
+:::: fragment
+::: callout-note
+**Matthew Effect in education**: advantage begets further advantage
 :::
 ::::
-::::::
-
-::: fragment
-The "Matthew Effect" in education: advantage begets further advantage
-:::
 
 ------------------------------------------------------------------------
 
@@ -311,7 +337,7 @@ ggplot(task_effects, aes(x = Territory, y = EYOS, fill = Territory)) +
 ```
 
 ::: fragment
-"**Skills beget skills**" - malleable trait with high returns for disadvantaged students
+"**Skills beget skills**" - malleable trait with high returns
 :::
 
 ------------------------------------------------------------------------
@@ -345,38 +371,7 @@ These are **exogenous factors** - require targeted interventions, not general po
 
 ------------------------------------------------------------------------
 
-## School Resources Show Mixed Results {.smaller}
-
-::::: columns
-::: {.column width="50%"}
-**Significant Effects**
-
-✓ **Teacher qualification** (Brazil, Tatarstan)\
-- Brazil: 2.3 EYOS per 1% increase - Tatarstan: 0.5 EYOS
-
-✓ **Urban location** (Russia, Tatarstan)\
-- 0.6-1.0 EYOS advantage
-
-✓ **Student-teacher ratio** (Russia, Brazil)\
-- Negative effects when overcrowded
-:::
-
-::: {.column width="50%"}
-**Insignificant or Unclear**
-
-✗ School infrastructure (self-reported)
-
-✗ Teacher qualification in high-SES areas (ceiling effect?)
-
-✗ Class size (curvilinear relationship)
-
-✗ Private schools (only Brazil shows effect)
-:::
-:::::
-
-------------------------------------------------------------------------
-
-## SES Shapes Learning Differently {.smaller}
+## Learning Gains by Individual SES {.smaller}
 
 ```{r}
 #| label: fig-pres-ses-gains
@@ -391,6 +386,24 @@ print(bar_plot_m2)
 -   **Brazil**: Wealthier students learn MORE per year (privilege compounds)
 -   **Russia, BSJZ**: Poorer students learn MORE per year (catching up, but from lower base)
 -   **Hong Kong, Macao**: No difference in learning rates (equity in gains)
+:::
+
+------------------------------------------------------------------------
+
+## Learning Gains by School SES {.smaller}
+
+```{r}
+#| label: fig-pres-sch-ses-gains
+#| fig-cap: "Learning Gains by Family SES"
+#| fig-width: 10
+#| fig-height: 5.5
+
+print(bar_plot_m3)
+```
+
+::: incremental
+-   **Privelege compounds**: Wealthier schools show higher learning gains
+-   **Exception**: Moscow City - due to the ceiling effect and/or low institutional stratification?
 :::
 
 ------------------------------------------------------------------------
@@ -471,7 +484,7 @@ Educational inequality is **jointly driven** by institutional structure and peer
 
 ------------------------------------------------------------------------
 
-## Conclusions {.center}
+## Conclusions {.smaller}
 
 ::: {.callout-tip icon="false"}
 ## Main Finding

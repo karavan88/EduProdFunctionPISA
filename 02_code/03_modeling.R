@@ -274,6 +274,19 @@ grade_coef_values <-
   filter(term == "School year") %>%
   select(country, grade_coef)
 
+peer_effects <-
+  eyos_results %>%
+  filter(term == "Average school SES") %>%
+  select(country, EYOS) %>%
+  rename(peer_EYOS = EYOS)
+
+peer_effects_plot <-
+  ggplot(peer_effects, aes(x = fct_reorder(country, peer_EYOS), y = peer_EYOS)) +
+  geom_bar(stat = "identity", fill = "coral") +
+  coord_flip() +
+  labs(x = "",
+       y = "Equivalent Years of Schooling (EYOS) from Peer Effects") +
+  theme_minimal()
 
 # Okabe-Ito colorblind-friendly palette (up to 8 colors)
 okabe_ito <- c(
