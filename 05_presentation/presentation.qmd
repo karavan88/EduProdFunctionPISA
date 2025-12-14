@@ -3,14 +3,15 @@ title: "Cognitive Skill Formation in Brazil, China, and Russia"
 subtitle: "An Education Production Function Approach"
 author: "Garen Avanesian"
 institute: "Southern Federal University, Rostov-on-Don, Russia"
-date: "December 2025"
+date: ""
 format:
   revealjs:
-    theme: [default, custom.scss]
+    theme: [simple]
     slide-number: true
+    fig-numbering: false
     chalkboard: true
     preview-links: auto
-    footer: "Education Production Function | PISA 2018 Analysis"
+    footer: "CHLR Symposium 2025"
     incremental: false
     transition: slide
     background-transition: fade
@@ -18,12 +19,11 @@ format:
     scrollable: true
     controls: true
     progress: true
-    fig-width: 10
-    fig-height: 6
     embed-resources: false
     self-contained: false
+    title-slide-attributes:
+      data-background-color: "#2c5aa0"
 editor: visual
-bibliography: ../04_manuscript/references.bib
 csl: ../04_manuscript/apa-with-abstract.csl
 ---
 
@@ -81,29 +81,6 @@ We're addressing a fundamental question in education economics: not just how lon
 
 ------------------------------------------------------------------------
 
-## Research Questions {.smaller}
-
-::: {.callout-important icon="false"}
-## Primary Question
-
-**What are the principal factors contributing to learning gains among secondary school students in Brazil, China, and Russia?**
-:::
-
-::: {.callout-note icon="false"}
-## Secondary Question
-
-**Are learning gains heterogeneous with respect to:**
-
--   Students' socio-economic status?
--   Socio-economic composition of schools?
-:::
-
-::: fragment
-Focus on **net productivity** (learning gains per year) vs. **gross productivity** (total achievement levels)
-:::
-
-------------------------------------------------------------------------
-
 ## Context & Data {.smaller}
 
 ::::: columns
@@ -135,6 +112,28 @@ Focus on **net productivity** (learning gains per year) vs. **gross productivity
 :::::
 
 ------------------------------------------------------------------------
+
+## Research Questions {.smaller}
+
+::: {.callout-important icon="false"}
+## Primary Question
+
+**What are the principal factors contributing to learning gains among secondary school students in Brazil, China, and Russia?**
+:::
+
+::: {.callout-note icon="false"}
+## Secondary Question
+
+**Are learning gains heterogeneous with respect to:**
+
+-   Students' socio-economic status?
+-   Socio-economic composition of schools?
+:::
+
+::: fragment
+Focus on **net productivity** (learning gains per year) vs. **gross productivity** (total achievement levels)
+:::
+
 
 ## The Puzzle: Gross vs. Net Productivity
 
@@ -187,7 +186,7 @@ Random effects control for endogeneity from age-grade variation and school clust
 
 ------------------------------------------------------------------------
 
-## Finding 1: Learning Gains Vary Dramatically {.smaller}
+## Learning Gains Vary! {.smaller}
 
 ```{r}
 #| label: fig-pres-learning-gains
@@ -228,7 +227,7 @@ ggplot(learning_gains, aes(x = Territory, y = Gain, color = Territory)) +
 
 ------------------------------------------------------------------------
 
-## Finding 2: Schools Matter, But How Much? {.smaller}
+## Schools Matter, But How Much? {.smaller}
 
 ```{r}
 #| label: fig-pres-icc
@@ -247,7 +246,7 @@ print(icc_plot)
 
 ------------------------------------------------------------------------
 
-## Finding 3: The Peer Effect Dominates {.smaller}
+## The Peer Effect Dominates {.smaller}
 
 :::::: columns
 ::: {.column width="50%"}
@@ -278,7 +277,7 @@ The "Matthew Effect" in education: advantage begets further advantage
 
 ------------------------------------------------------------------------
 
-## Finding 4: Non-Cognitive Skills Matter {.smaller}
+## Non-Cognitive Skills Matter {.smaller}
 
 ```{r}
 #| label: fig-pres-eyos-task
@@ -317,7 +316,7 @@ ggplot(task_effects, aes(x = Territory, y = EYOS, fill = Territory)) +
 
 ------------------------------------------------------------------------
 
-## Finding 5: Gender & Language Gaps Persist {.smaller}
+## Gender & Language Gaps Persist {.smaller}
 
 ::::: columns
 ::: {.column width="50%"}
@@ -346,7 +345,7 @@ These are **exogenous factors** - require targeted interventions, not general po
 
 ------------------------------------------------------------------------
 
-## Finding 6: School Resources Show Mixed Results {.smaller}
+## School Resources Show Mixed Results {.smaller}
 
 ::::: columns
 ::: {.column width="50%"}
@@ -377,7 +376,7 @@ These are **exogenous factors** - require targeted interventions, not general po
 
 ------------------------------------------------------------------------
 
-## Finding 7: SES Shapes Learning Differently {.smaller}
+## SES Shapes Learning Differently {.smaller}
 
 ```{r}
 #| label: fig-pres-ses-gains
@@ -492,9 +491,9 @@ Educational inequality is **jointly driven** by institutional structure and peer
 
 ------------------------------------------------------------------------
 
-## Thank You {.center background-color="#1a1a1a"}
+## Thank You {.center}
 
-::: {style="font-size: 1.8em; margin-top: 2em;"}
+::: {style="font-size: 1.8em; margin-top: 1em;"}
 **Questions?**
 :::
 
@@ -504,11 +503,4 @@ Southern Federal University\
 📧 avanesian\@sfedu.ru
 
 📊 GitHub: [github.com/karavan88/EduProdFunctionPISA](https://github.com/karavan88/EduProdFunctionPISA)
-:::
-
-------------------------------------------------------------------------
-
-## References {.smaller}
-
-::: {#refs}
 :::
