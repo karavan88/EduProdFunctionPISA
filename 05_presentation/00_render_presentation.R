@@ -16,27 +16,38 @@ system(paste("quarto render", presentation_file))
 if (file.exists("05_presentation/presentation.html")) {
   cat("✅ Presentation rendered successfully\n")
   
-  # Copy to docs folder
+  # Copy HTML file to docs folder
   file.copy(
     from = "05_presentation/presentation.html",
     to = file.path(docs_folder, "presentation.html"),
     overwrite = TRUE
   )
   
-  # Copy supporting files if they exist
+  # Copy supporting files folder if it exists
   if (dir.exists("05_presentation/presentation_files")) {
-    if (!dir.exists(file.path(docs_folder, "presentation_files"))) {
-      dir.create(file.path(docs_folder, "presentation_files"), recursive = TRUE)
+    # Remove old presentation_files in docs if it exists
+    if (dir.exists(file.path(docs_folder, "presentation_files"))) {
+      unlink(file.path(docs_folder, "presentation_files"), recursive = TRUE)
     }
-    file.copy(
+    
+    # Copy the entire directory recursively using R.utils or system command
+    success <- file.copy(
       from = "05_presentation/presentation_files",
       to = docs_folder,
       overwrite = TRUE,
       recursive = TRUE
     )
+    
+    if (success) {
+      cat("✅ Presentation HTML copied to docs folder\n")
+      cat("✅ Supporting files copied to docs/presentation_files\n")
+    } else {
+      cat("⚠️  Warning: Supporting files may not have copied correctly\n")
+    }
+  } else {
+    cat("✅ Presentation copied to docs folder\n")
   }
   
-  cat("✅ Presentation copied to docs folder\n")
   cat("🌐 Accessible at: docs/presentation.html\n\n")
 } else {
   cat("❌ Presentation rendering failed\n")
